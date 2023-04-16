@@ -13,14 +13,14 @@
 body {
   max-width: 1200;
   margin: 0 auto;
-  background-color: #111;
+  background-color: #000;
 }
 
 /* HEADER */
 
 header {
 
-  background-color: black;
+  background-color: #000;
   padding: 10px;
   display: flex;
   align-items: center;
@@ -29,7 +29,7 @@ header {
 }
 
 header h1 {
-  color: orange;
+  color: rgb(255, 0, 0);
 }
 
 header span {
@@ -44,20 +44,20 @@ header .navegacao-primaria {
 
 header .navegacao-primaria li a {
   padding: 10px;
-  color: rgb(0, 174, 255);
+  color: rgb(255, 255, 255);
   font-size: 1.3rem;
 }
 
 .section-div {
   animation: inicializar .7s forwards;
-  background-color: black;
+  background-color: #000;
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-content: space-around;
   align-items: center;
   gap: 60px;
   padding: 60px;
-  color: orange;
+  color: #fff;
 }
 
 .section-div div {
@@ -65,7 +65,7 @@ header .navegacao-primaria li a {
   align-self: start;
   display: grid;
   gap: 30px;
-  color: orange;
+  color: rgb(255, 255, 255);
 }
 
 .section-div div h2 {
@@ -82,7 +82,7 @@ header .navegacao-primaria li a {
 
 .curriculo a {
   justify-self: left;
-  color: orange;
+  color: rgb(255, 255, 255);
   padding: 15px 40px;
   border-radius: 5px;
   border: 2px solid white;
@@ -106,7 +106,7 @@ c {
 
   font-size: larger;
   justify-self: start;
-  color: #fff;
+  color: (250, 250, 250);
   padding: 50px 56px;
 
 }
