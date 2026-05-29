@@ -1,0 +1,189 @@
+@import "tailwindcss";
+
+/* ── Theme variables ────────────────────────── */
+:root, [data-theme="dark"] {
+  --c-bg:      #080808;
+  --c-bg2:     #0f0f0f;
+  --c-bg3:     #111111;
+  --c-bg4:     #0a0a0a;
+  --c-bg5:     #141414;
+  --c-text:    #f0f0f0;
+  --c-t70:     rgba(255,255,255,0.7);
+  --c-t60:     rgba(255,255,255,0.6);
+  --c-t50:     rgba(255,255,255,0.5);
+  --c-t45:     rgba(255,255,255,0.45);
+  --c-t40:     rgba(255,255,255,0.4);
+  --c-t35:     rgba(255,255,255,0.35);
+  --c-t30:     rgba(255,255,255,0.3);
+  --c-t25:     rgba(255,255,255,0.25);
+  --c-t20:     rgba(255,255,255,0.2);
+  --c-t15:     rgba(255,255,255,0.15);
+  --c-t12:     rgba(255,255,255,0.12);
+  --c-t10:     rgba(255,255,255,0.1);
+  --c-t08:     rgba(255,255,255,0.08);
+  --c-t07:     rgba(255,255,255,0.07);
+  --c-t06:     rgba(255,255,255,0.06);
+  --c-t05:     rgba(255,255,255,0.05);
+  --c-t04:     rgba(255,255,255,0.04);
+  --c-inv:     #ffffff;
+  --c-glass:   rgba(12,12,12,0.88);
+  --c-glass2:  rgba(8,8,8,0.85);
+  --c-overlay: rgba(8,8,8,0.97);
+}
+
+[data-theme="light"] {
+  --c-bg:      #f5f5f5;
+  --c-bg2:     #ffffff;
+  --c-bg3:     #ececec;
+  --c-bg4:     #f0f0f0;
+  --c-bg5:     #e4e4e4;
+  --c-text:    #0d0d0d;
+  --c-t70:     rgba(0,0,0,0.7);
+  --c-t60:     rgba(0,0,0,0.6);
+  --c-t50:     rgba(0,0,0,0.5);
+  --c-t45:     rgba(0,0,0,0.45);
+  --c-t40:     rgba(0,0,0,0.4);
+  --c-t35:     rgba(0,0,0,0.35);
+  --c-t30:     rgba(0,0,0,0.3);
+  --c-t25:     rgba(0,0,0,0.25);
+  --c-t20:     rgba(0,0,0,0.2);
+  --c-t15:     rgba(0,0,0,0.15);
+  --c-t12:     rgba(0,0,0,0.12);
+  --c-t10:     rgba(0,0,0,0.1);
+  --c-t08:     rgba(0,0,0,0.08);
+  --c-t07:     rgba(0,0,0,0.07);
+  --c-t06:     rgba(0,0,0,0.06);
+  --c-t05:     rgba(0,0,0,0.05);
+  --c-t04:     rgba(0,0,0,0.04);
+  --c-inv:     #0d0d0d;
+  --c-glass:   rgba(245,245,245,0.92);
+  --c-glass2:  rgba(245,245,245,0.9);
+  --c-overlay: rgba(245,245,245,0.97);
+}
+
+/* ── Theme transition ───────────────────────── */
+*, *::before, *::after {
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+/* exclude animations from transition */
+.hero-line, .hero-sub, .hero-desc, .hero-cta, .hero-stats,
+canvas, video { transition: none !important; }
+
+/* ── Light mode button overrides ────────────── */
+[data-theme="light"] .hover\:bg-white:hover { background-color: #0d0d0d !important; }
+[data-theme="light"] .hover\:text-black:hover { color: #f5f5f5 !important; }
+[data-theme="light"] .bg-white { background-color: #0d0d0d !important; }
+[data-theme="light"] .text-white { color: #0d0d0d !important; }
+[data-theme="light"] .text-black { color: #f5f5f5 !important; }
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: auto;
+    overflow-x: hidden;
+  }
+
+  body {
+    background-color: var(--c-bg);
+    color: var(--c-text);
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+  }
+
+  ::-webkit-scrollbar { width: 3px; }
+  ::-webkit-scrollbar-track { background: var(--c-bg); }
+  ::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+
+  #root {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: var(--c-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--c-t08);
+  }
+
+  .card {
+    background: var(--c-bg2);
+    border: 1px solid var(--c-t06);
+  }
+
+  .card-hover {
+    background: var(--c-bg2);
+    border: 1px solid var(--c-t06);
+    transition: border-color 0.3s, background 0.3s;
+  }
+
+  .card-hover:hover {
+    border-color: var(--c-t12);
+    background: var(--c-bg3);
+  }
+
+  .tag {
+    background: var(--c-bg4);
+    border: 1px solid var(--c-t08);
+    color: var(--c-t50);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: var(--c-bg);
+    border: 1px solid var(--c-t08);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--c-t50);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes scan {
+  0% { transform: translateY(-100%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.animate-float { animation: float 7s ease-in-out infinite; }
+.animate-pulse-soft { animation: pulse-soft 2s ease-in-out infinite; }

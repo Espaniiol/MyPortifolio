@@ -1,0 +1,40 @@
+export type Lang = 'pt' | 'en' | 'es';
+
+export const translations = {
+  pt: {
+    nav: { about: 'Sobre', experience: 'Experiência', projects: 'Projetos', stack: 'Stack', journey: 'Jornada', contact: 'Contato' },
+    hero: { available: 'Disponível para projetos', viewProjects: 'Ver Projetos', whatsapp: 'WhatsApp', yearsExp: 'Anos de Experiência', technologies: 'Tecnologias' },
+    about: { badge: 'Sobre mim', title: 'Quem sou eu', yearsExp: 'Anos de Experiência', companies: 'Empresas', technologies: 'Tecnologias', dedication: 'Dedicação', available: 'Disponível para projetos' },
+    experience: { badge: 'Trajetória profissional', title: 'Experiência' },
+    projects: { badge: 'Portfólio', title: 'Projetos' },
+    stack: { badge: 'Ferramentas & Tecnologias', title: 'Stack' },
+    journey: { badge: 'Minha trajetória', title: 'A Jornada', subtitle: 'De scripts simples a sistemas corporativos — cada etapa foi essencial.' },
+    contact: { badge: 'Vamos conversar', title: 'Contato', subtitle: 'Tem um projeto? Me manda uma mensagem.', nameLabel: 'Nome', emailLabel: 'Email', messageLabel: 'Mensagem', namePlaceholder: 'Seu nome', emailPlaceholder: 'seu@email.com', messagePlaceholder: 'Conte sobre seu projeto...', sendBtn: 'Enviar mensagem →', sentTitle: 'Mensagem enviada', sentSubtitle: 'Responderei em breve.', workTogether: 'Vamos trabalhar juntos', workDesc: 'Disponível para projetos freelance, consultorias técnicas e oportunidades full-time.', statusText: 'Disponível · Marmeleiro — PR · Remoto', links: 'Links' },
+    footer: { builtWith: 'Construído com React, TypeScript & GSAP' },
+    loading: { ready: 'Pronto' },
+  },
+  en: {
+    nav: { about: 'About', experience: 'Experience', projects: 'Projects', stack: 'Stack', journey: 'Journey', contact: 'Contact' },
+    hero: { available: 'Available for projects', viewProjects: 'View Projects', whatsapp: 'WhatsApp', yearsExp: 'Years of Experience', technologies: 'Technologies' },
+    about: { badge: 'About me', title: 'Who I am', yearsExp: 'Years of Experience', companies: 'Companies', technologies: 'Technologies', dedication: 'Dedication', available: 'Available for projects' },
+    experience: { badge: 'Professional journey', title: 'Experience' },
+    projects: { badge: 'Portfolio', title: 'Projects' },
+    stack: { badge: 'Tools & Technologies', title: 'Stack' },
+    journey: { badge: 'My journey', title: 'The Journey', subtitle: 'From simple scripts to corporate systems — each step was essential.' },
+    contact: { badge: "Let's talk", title: 'Contact', subtitle: 'Have a project? Send me a message.', nameLabel: 'Name', emailLabel: 'Email', messageLabel: 'Message', namePlaceholder: 'Your name', emailPlaceholder: 'your@email.com', messagePlaceholder: 'Tell me about your project...', sendBtn: 'Send message →', sentTitle: 'Message sent', sentSubtitle: "I'll respond soon.", workTogether: "Let's work together", workDesc: 'Available for freelance projects, technical consulting and full-time opportunities.', statusText: 'Available · Marmeleiro — PR · Remote', links: 'Links' },
+    footer: { builtWith: 'Built with React, TypeScript & GSAP' },
+    loading: { ready: 'Ready' },
+  },
+  es: {
+    nav: { about: 'Sobre', experience: 'Experiencia', projects: 'Proyectos', stack: 'Stack', journey: 'Trayectoria', contact: 'Contacto' },
+    hero: { available: 'Disponible para proyectos', viewProjects: 'Ver Proyectos', whatsapp: 'WhatsApp', yearsExp: 'Años de Experiencia', technologies: 'Tecnologías' },
+    about: { badge: 'Sobre mí', title: 'Quién soy', yearsExp: 'Años de Experiencia', companies: 'Empresas', technologies: 'Tecnologías', dedication: 'Dedicación', available: 'Disponible para proyectos' },
+    experience: { badge: 'Trayectoria profesional', title: 'Experiencia' },
+    projects: { badge: 'Portafolio', title: 'Proyectos' },
+    stack: { badge: 'Herramientas & Tecnologías', title: 'Stack' },
+    journey: { badge: 'Mi trayectoria', title: 'El Camino', subtitle: 'De scripts simples a sistemas corporativos — cada paso fue esencial.' },
+    contact: { badge: 'Hablemos', title: 'Contacto', subtitle: '¿Tienes un proyecto? Mándame un mensaje.', nameLabel: 'Nombre', emailLabel: 'Email', messageLabel: 'Mensaje', namePlaceholder: 'Tu nombre', emailPlaceholder: 'tu@email.com', messagePlaceholder: 'Cuéntame sobre tu proyecto...', sendBtn: 'Enviar mensaje →', sentTitle: 'Mensaje enviado', sentSubtitle: 'Responderé pronto.', workTogether: 'Trabajemos juntos', workDesc: 'Disponible para proyectos freelance, consultoría técnica y oportunidades full-time.', statusText: 'Disponible · Marmeleiro — PR · Remoto', links: 'Links' },
+    footer: { builtWith: 'Construido con React, TypeScript & GSAP' },
+    loading: { ready: 'Listo' },
+  },
+};
