@@ -158,6 +158,5 @@ export const journeyEvents = [
 
 export const stats = [
   { value: 5, suffix: '+', label: 'Anos de Experiência' },
-  { value: 3,  suffix: '',  label: 'Empresas' },
   { value: 10, suffix: '+', label: 'Tecnologias' },
 ];
