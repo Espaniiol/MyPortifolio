@@ -53,8 +53,8 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
         <div className="w-14 h-14 rounded-xl flex items-center justify-center" style={{ border: '1px solid var(--c-t15)', background: 'var(--c-t04)' }}>
           <span className="text-2xl font-black" style={{ color: 'var(--c-text)' }}>G</span>
         </div>
-        <div className="ls-label text-[11px] tracking-[0.5em] uppercase" style={{ color: 'var(--c-t30)' }}>
-          Guilherme Espaniol
+        <div className="ls-label text-[11px] tracking-[0.3em] uppercase text-center" style={{ color: 'var(--c-t30)' }}>
+          Guilherme E. Schlickmann
         </div>
       </div>
 

@@ -80,18 +80,24 @@ export default function Navbar() {
         </span>
       </button>
 
-      {/* Theme toggle button */}
-      <button
-        onClick={toggleTheme}
-        className="fixed top-7 z-50 flex items-center justify-center w-7 h-7 rounded-lg transition-all duration-200"
-        style={{ left: '130px', border: '1px solid var(--c-t12)', background: 'var(--c-t05)', color: 'var(--c-t50)' }}
-        aria-label="Toggle theme"
-      >
-        {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
-      </button>
+      {/* Theme toggle + Language switcher — top right, desktop only */}
+      <div className="fixed top-7 right-7 z-50 hidden md:flex items-center gap-1 p-1 rounded-xl"
+        style={{ background: 'var(--c-t04)', border: '1px solid var(--c-t08)' }}>
 
-      {/* Language switcher — desktop only */}
-      <div className="fixed top-7 right-24 z-50 hidden md:flex items-center gap-1">
+        {/* Theme toggle */}
+        <button
+          onClick={toggleTheme}
+          className="flex items-center justify-center w-7 h-7 rounded-lg transition-all duration-200 hover:bg-white/10"
+          style={{ color: 'var(--c-t50)' }}
+          aria-label="Toggle theme"
+        >
+          {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+        </button>
+
+        {/* Divider */}
+        <div className="w-px h-4 mx-0.5" style={{ background: 'var(--c-t10)' }} />
+
+        {/* Language switcher */}
         {(['pt', 'en', 'es'] as Lang[]).map(l => (
           <button
             key={l}
@@ -99,8 +105,7 @@ export default function Navbar() {
             className="text-[10px] font-bold uppercase px-2 py-1 rounded-lg transition-all"
             style={{
               color: lang === l ? 'var(--c-text)' : 'var(--c-t30)',
-              background: lang === l ? 'var(--c-t06)' : 'transparent',
-              border: `1px solid ${lang === l ? 'var(--c-t10)' : 'transparent'}`,
+              background: lang === l ? 'var(--c-t08)' : 'transparent',
             }}
           >
             {l}
