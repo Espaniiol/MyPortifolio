@@ -1,7 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import emailjs from '@emailjs/browser';
 import { useApp } from '../contexts/AppContext';
+
+// ── Configure suas chaves do EmailJS aqui ──────────────────────────────────
+const EMAILJS_SERVICE_ID  = 'service_4fx5nsh';
+const EMAILJS_TEMPLATE_ID = 'template_h2y3po3';
+const EMAILJS_PUBLIC_KEY  = 'ztRtZ9qL88Y4tabi0';
+// ──────────────────────────────────────────────────────────────────────────
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,8 +26,10 @@ const socials = [
 export default function Contact() {
   const { t } = useApp();
   const sectionRef = useRef<HTMLElement>(null);
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
-  const [sent, setSent] = useState(false);
+  const [form, setForm]       = useState({ name: '', email: '', message: '' });
+  const [sent, setSent]       = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError]     = useState('');
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -32,11 +41,30 @@ export default function Contact() {
     return () => ctx.revert();
   }, []);
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSent(true);
-    setTimeout(() => setSent(false), 3000);
-    setForm({ name: '', email: '', message: '' });
+    setSending(true);
+    setError('');
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          name:    form.name,
+          email:   form.email,
+          message: form.message,
+          title:   'Novo contato pelo portfólio',
+        },
+        EMAILJS_PUBLIC_KEY,
+      );
+      setSent(true);
+      setForm({ name: '', email: '', message: '' });
+    } catch {
+      setError('Erro ao enviar. Tente novamente ou use o WhatsApp.');
+    } finally {
+      setSending(false);
+    }
   };
 
   const inputStyle: React.CSSProperties = {
@@ -88,9 +116,13 @@ export default function Contact() {
                     style={{...inputStyle, resize: 'none'} as React.CSSProperties}
                     onFocus={focus} onBlur={blur} />
                 </div>
-                <button type="submit" className="w-full py-3 rounded-xl text-sm font-semibold transition-all duration-200 hover:bg-white hover:text-black"
+                {error && (
+                  <p className="text-xs text-red-400 text-center">{error}</p>
+                )}
+                <button type="submit" disabled={sending}
+                  className="w-full py-3 rounded-xl text-sm font-semibold transition-all duration-200 hover:bg-white hover:text-black disabled:opacity-50 disabled:cursor-not-allowed"
                   style={{ border: '1px solid var(--c-t20)', color: 'var(--c-text)', background: 'var(--c-t04)' }}>
-                  {t('contact.sendBtn')}
+                  {sending ? 'Enviando...' : t('contact.sendBtn')}
                 </button>
               </form>
             )}
