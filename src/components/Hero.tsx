@@ -95,10 +95,10 @@ export default function Hero() {
         </div>
 
         {/* Title */}
-        <div className="mb-8">
+        <div className="mb-10">
           {['Analista', 'Programador'].map((word, i) => (
-            <div key={i} style={{ lineHeight: 0.92 }}>
-              <div className="hero-line inline-block text-[clamp(3.5rem,12vw,9rem)] font-black tracking-tighter" style={{ color: i === 0 ? 'var(--c-text)' : 'var(--c-inv)' }}>
+            <div key={i} style={{ lineHeight: 0.9 }}>
+              <div className="hero-line inline-block text-[clamp(2.8rem,9vw,7rem)] font-black tracking-tighter" style={{ color: i === 0 ? 'var(--c-text)' : 'var(--c-inv)' }}>
                 {word}
               </div>
             </div>
@@ -106,9 +106,14 @@ export default function Hero() {
         </div>
 
         {/* Subtitle */}
-        <div className="hero-sub mb-6">
+        <div className="hero-sub mb-8 flex flex-col items-center gap-3">
           <span className="text-xs tracking-[0.4em] uppercase" style={{ color: 'var(--c-t25)' }}>
             Delphi &nbsp;·&nbsp; Oracle &nbsp;·&nbsp; ERP Systems
+          </span>
+          <span className="inline-flex items-center gap-2 text-xs tracking-[0.3em] uppercase font-medium" style={{ color: 'var(--c-t40)' }}>
+            <span style={{ color: 'var(--c-t15)' }}>—</span>
+            Full Stack Developer
+            <span style={{ color: 'var(--c-t15)' }}>—</span>
           </span>
         </div>
 

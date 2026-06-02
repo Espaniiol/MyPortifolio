@@ -1,7 +1,7 @@
 export const personalInfo = {
   name: 'Guilherme',
   lastName: 'E. Schlickmann',
-  title: 'Analista Programador',
+  title: 'Analista Programador | Full Stack Developer',
   subtitle: 'Delphi · Oracle · ERP Systems',
   description:
     'Desenvolvedor com experiência em sistemas ERP e aplicações legadas, atuando principalmente com Delphi e bancos de dados Oracle/PostgreSQL. Experiência em stored procedures, triggers e integrações de APIs corporativas.',
