@@ -69,12 +69,19 @@ export default function Contact() {
 
   const inputStyle: React.CSSProperties = {
     width: '100%', padding: '12px 16px', borderRadius: '12px', fontSize: '14px',
-    background: 'var(--c-bg3)', border: '1px solid var(--c-t08)', color: 'var(--c-text)',
-    outline: 'none', transition: 'border-color 0.2s',
+    background: 'var(--c-bg3)', border: '1px solid var(--c-t10)', color: 'var(--c-text)',
+    outline: 'none', transition: 'border-color 0.25s ease, box-shadow 0.25s ease',
+    boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.2)',
   };
 
-  const focus = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => { e.target.style.borderColor = 'var(--c-t25)'; };
-  const blur  = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => { e.target.style.borderColor = 'var(--c-t08)'; };
+  const focus = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    e.target.style.borderColor = 'var(--c-t30)';
+    e.target.style.boxShadow = 'inset 0 1px 3px rgba(0,0,0,0.2), 0 0 0 3px rgba(255,255,255,0.04)';
+  };
+  const blur  = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    e.target.style.borderColor = 'var(--c-t10)';
+    e.target.style.boxShadow = 'inset 0 1px 3px rgba(0,0,0,0.2)';
+  };
 
   return (
     <section ref={sectionRef} id="contact" className="py-32" style={{ background: 'var(--c-bg4)' }}>
@@ -88,7 +95,7 @@ export default function Contact() {
 
         <div className="contact-grid grid lg:grid-cols-2 gap-8">
           {/* Form */}
-          <div className="contact-block p-8 rounded-2xl" style={{ background: 'var(--c-bg2)', border: '1px solid var(--c-t06)' }}>
+          <div className="contact-block p-8 rounded-2xl" style={{ background: 'var(--c-bg2)', border: '1px solid var(--c-t08)', boxShadow: '0 2px 12px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.03)' }}>
             {sent ? (
               <div className="flex flex-col items-center justify-center py-16 text-center">
                 <div className="text-4xl mb-3">✓</div>
@@ -130,7 +137,7 @@ export default function Contact() {
 
           {/* Info */}
           <div className="flex flex-col gap-5">
-            <div className="contact-block p-7 rounded-2xl" style={{ background: 'var(--c-bg2)', border: '1px solid var(--c-t06)' }}>
+            <div className="contact-block p-7 rounded-2xl" style={{ background: 'var(--c-bg2)', border: '1px solid var(--c-t08)', boxShadow: '0 2px 12px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.03)' }}>
               <h3 className="text-base font-bold mb-2" style={{ color: 'var(--c-text)' }}>{t('contact.workTogether')}</h3>
               <p className="text-sm leading-relaxed" style={{ color: 'var(--c-t40)' }}>
                 {t('contact.workDesc')} Especialista em sistemas ERP, Delphi, Oracle e desenvolvimento moderno.
@@ -141,7 +148,7 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="contact-block p-6 rounded-2xl" style={{ background: 'var(--c-bg2)', border: '1px solid var(--c-t06)' }}>
+            <div className="contact-block p-6 rounded-2xl" style={{ background: 'var(--c-bg2)', border: '1px solid var(--c-t08)', boxShadow: '0 2px 12px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.03)' }}>
               <div className="text-xs uppercase tracking-widest mb-4" style={{ color: 'var(--c-t25)' }}>{t('contact.links')}</div>
               <div className="space-y-3">
                 {socials.map(s => (

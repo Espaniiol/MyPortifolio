@@ -82,21 +82,21 @@ function Modal({ p, onClose }: { p: Project; onClose: () => void }) {
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
-    gsap.fromTo(bg.current,  { opacity: 0 }, { opacity: 1, duration: 0.25 });
-    gsap.fromTo(box.current, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: 'power3.out' });
+    gsap.fromTo(bg.current,  { opacity: 0 }, { opacity: 1, duration: 0.3, ease: 'power2.out' });
+    gsap.fromTo(box.current, { y: 20, scale: 0.97, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.4, ease: 'power3.out' });
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') close(); };
     document.addEventListener('keydown', onKey);
     return () => { document.body.style.overflow = ''; document.removeEventListener('keydown', onKey); };
   }, []);
 
   const close = () => {
-    gsap.to(box.current, { y: 20, opacity: 0, duration: 0.25 });
-    gsap.to(bg.current,  { opacity: 0, duration: 0.25, onComplete: onClose });
+    gsap.to(box.current, { y: 16, scale: 0.97, opacity: 0, duration: 0.28, ease: 'power2.in' });
+    gsap.to(bg.current,  { opacity: 0, duration: 0.28, ease: 'power2.in', onComplete: onClose });
   };
 
   return (
     <div ref={bg} className="fixed inset-0 z-50 flex items-center justify-center p-4"
-      style={{ background: 'rgba(0,0,0,0.88)', backdropFilter: 'blur(10px)' }}
+      style={{ background: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(14px)' }}
       onClick={e => { if (e.target === bg.current) close(); }}>
 
       <div ref={box} className="relative w-full max-w-xl rounded-2xl overflow-hidden"
@@ -175,8 +175,8 @@ export default function Projects() {
         <div className="proj-grid grid md:grid-cols-2 gap-5 mb-5">
           {featured.map(p => (
             <div key={p.id}
-              className="proj-card group relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1"
-              style={{ background: 'var(--c-bg2)', border: '1px solid var(--c-t06)' }}
+              className="proj-card group relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_32px_rgba(0,0,0,0.35)]"
+              style={{ background: 'var(--c-bg2)', border: '1px solid var(--c-t08)', boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}
               onClick={() => setSelected(p)}>
 
               {/* Mobile card */}

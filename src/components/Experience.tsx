@@ -17,10 +17,10 @@ export default function Experience() {
         { opacity: 1, y: 0, duration: 0.8, scrollTrigger: { trigger: sectionRef.current, start: 'top 76%' } });
       gsap.fromTo('.timeline-line', { scaleY: 0, transformOrigin: 'top' },
         { scaleY: 1, duration: 1.5, ease: 'power2.inOut', scrollTrigger: { trigger: '.tl-wrap', start: 'top 76%' } });
-      gsap.fromTo('.exp-card', { opacity: 0, x: -30 },
-        { opacity: 1, x: 0, duration: 0.6, stagger: 0.15, ease: 'power3.out', scrollTrigger: { trigger: '.tl-wrap', start: 'top 74%' } });
+      gsap.fromTo('.exp-card', { opacity: 0, x: -20 },
+        { opacity: 1, x: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out', scrollTrigger: { trigger: '.tl-wrap', start: 'top 74%' } });
       gsap.fromTo('.tl-dot', { scale: 0 },
-        { scale: 1, duration: 0.4, stagger: 0.15, ease: 'back.out(2)', scrollTrigger: { trigger: '.tl-wrap', start: 'top 74%' } });
+        { scale: 1, duration: 0.45, stagger: 0.12, ease: 'back.out(1.4)', scrollTrigger: { trigger: '.tl-wrap', start: 'top 74%' } });
     }, sectionRef);
     return () => ctx.revert();
   }, []);
@@ -48,7 +48,10 @@ export default function Experience() {
                 <div className={`w-full md:w-[calc(50%-2rem)] ${i%2===0 ? 'md:pr-8' : 'md:pl-8'}`}>
                   <div className="p-6 rounded-2xl cursor-pointer transition-all duration-300" style={{
                     background: active===exp.id ? 'var(--c-bg5)' : 'var(--c-bg2)',
-                    border: `1px solid ${active===exp.id ? 'var(--c-t12)' : 'var(--c-t06)'}`,
+                    border: `1px solid ${active===exp.id ? 'var(--c-t15)' : 'var(--c-t08)'}`,
+                    boxShadow: active===exp.id
+                      ? '0 8px 24px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.04)'
+                      : '0 2px 8px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.03)',
                   }} onClick={() => setActive(active===exp.id ? null : exp.id)}>
 
                     <div className="flex items-start justify-between mb-3">
@@ -62,7 +65,7 @@ export default function Experience() {
                       </svg>
                     </div>
 
-                    <div style={{ maxHeight: active===exp.id ? '200px' : '0', overflow: 'hidden', transition: 'max-height 0.4s ease' }}>
+                    <div style={{ maxHeight: active===exp.id ? '240px' : '0', overflow: 'hidden', transition: 'max-height 0.45s cubic-bezier(0.4,0,0.2,1)' }}>
                       <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--c-t40)' }}>{exp.description}</p>
                     </div>
 

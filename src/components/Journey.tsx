@@ -31,7 +31,7 @@ export default function Journey() {
 
       // Dots pop in
       gsap.fromTo('.j-dot', { scale: 0 },
-        { scale: 1, duration: 0.35, stagger: 0.1, ease: 'back.out(2)',
+        { scale: 1, duration: 0.4, stagger: 0.08, ease: 'back.out(1.4)',
           scrollTrigger: { trigger: '.j-timeline', start: 'top 78%' } });
     }, sectionRef);
     return () => ctx.revert();
@@ -85,7 +85,7 @@ export default function Journey() {
                     style={{
                       background: e.year === 'Futuro' ? 'var(--c-t20)' : 'var(--c-inv)',
                       border: '2px solid var(--c-bg)',
-                      boxShadow: e.year !== 'Futuro' ? '0 0 8px var(--c-t30)' : 'none',
+                      boxShadow: e.year !== 'Futuro' ? '0 0 6px rgba(255,255,255,0.18)' : 'none',
                     }} />
                 </div>
               ))}
@@ -129,7 +129,7 @@ export default function Journey() {
 function Card({ e, i, cls }: { e: typeof journeyEvents[0]; i: number; cls: string }) {
   return (
     <div className={`${cls} relative p-4 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1`}
-      style={{ background: 'var(--c-bg2)', border: '1px solid var(--c-t06)' }}>
+      style={{ background: 'var(--c-bg2)', border: '1px solid var(--c-t08)', boxShadow: '0 2px 8px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.03)' }}>
 
       {/* Top accent */}
       <div className="absolute top-0 left-0 right-0 h-px"

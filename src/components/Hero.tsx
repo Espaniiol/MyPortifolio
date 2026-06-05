@@ -50,11 +50,11 @@ export default function Hero() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 3.0 });
-      tl.fromTo('.hero-line', { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, stagger: 0.12, ease: 'power4.out' });
-      tl.fromTo('.hero-sub', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.3');
-      tl.fromTo('.hero-desc', { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.3');
-      tl.fromTo('.hero-cta', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.2');
-      tl.fromTo('.hero-stats', { opacity: 0 }, { opacity: 1, duration: 0.5 }, '-=0.2');
+      tl.fromTo('.hero-line', { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1.0, stagger: 0.08, ease: 'power3.out' });
+      tl.fromTo('.hero-sub', { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.4');
+      tl.fromTo('.hero-desc', { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.4');
+      tl.fromTo('.hero-cta', { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3');
+      tl.fromTo('.hero-stats', { opacity: 0 }, { opacity: 1, duration: 0.6 }, '-=0.2');
 
       gsap.to('.hero-content', {
         yPercent: 20, ease: 'none',
@@ -70,7 +70,7 @@ export default function Hero() {
 
       {/* Vinheta central */}
       <div className="absolute inset-0 pointer-events-none" style={{
-        background: 'radial-gradient(ellipse 80% 60% at 50% 50%, transparent 40%, var(--c-bg) 100%)',
+        background: 'radial-gradient(ellipse 90% 70% at 50% 50%, transparent 30%, rgba(8,8,8,0.4) 65%, var(--c-bg) 100%)',
         zIndex: 2,
       }} />
 
