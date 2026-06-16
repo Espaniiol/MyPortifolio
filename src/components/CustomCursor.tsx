@@ -12,9 +12,17 @@ export default function CustomCursor() {
     const ring = ringRef.current;
     if (!dot || !ring) return;
 
+    let appeared = false;
     const onMove = (e: MouseEvent) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
+      if (!appeared) {
+        appeared = true;
+        dot.style.opacity  = '1';
+        ring.style.opacity = '1';
+        gsap.set(dot,  { x: mouseX, y: mouseY });
+        gsap.set(ring, { x: mouseX, y: mouseY });
+      }
       gsap.to(dot, { x: mouseX, y: mouseY, duration: 0.06, ease: 'power2.out' });
     };
 
@@ -68,8 +76,8 @@ export default function CustomCursor() {
 
   return (
     <>
-      <div ref={dotRef} className="fixed pointer-events-none z-[9998]" style={{ width: 5, height: 5, borderRadius: '50%', background: 'var(--c-inv)', top: 0, left: 0, transform: 'translate(-50%,-50%)' }} />
-      <div ref={ringRef} className="fixed pointer-events-none z-[9997]" style={{ width: 32, height: 32, borderRadius: '50%', border: '1px solid var(--c-t35)', top: 0, left: 0, transform: 'translate(-50%,-50%)' }} />
+      <div ref={dotRef} className="fixed pointer-events-none z-[9998]" style={{ width: 5, height: 5, borderRadius: '50%', background: 'var(--c-inv)', top: 0, left: 0, transform: 'translate(-50%,-50%)', opacity: 0 }} />
+      <div ref={ringRef} className="fixed pointer-events-none z-[9997]" style={{ width: 32, height: 32, borderRadius: '50%', border: '1px solid var(--c-t35)', top: 0, left: 0, transform: 'translate(-50%,-50%)', opacity: 0 }} />
     </>
   );
 }

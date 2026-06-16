@@ -10,40 +10,103 @@ export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  /* Particle canvas */
+  /* Particle canvas — optimized */
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) return;
-    let raf: number;
-    const pts: { x: number; y: number; vx: number; vy: number; s: number }[] = [];
 
-    const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
+    let raf: number;
+    let lastTime = 0;
+    let visible = true;
+    const FPS = 30;
+    const INTERVAL = 1000 / FPS;
+    const COUNT = 35;
+    const MAX_DIST = 100;
+    const MAX_DIST_SQ = MAX_DIST * MAX_DIST;
+
+    const baseColor = theme === 'dark' ? '255,255,255' : '0,0,0';
+    const dotFill  = `rgba(${baseColor},0.15)`;
+    const lineFill = `rgba(${baseColor},0.04)`;
+
+    type Pt = { x: number; y: number; vx: number; vy: number; s: number };
+    const pts: Pt[] = [];
+
+    const resize = () => {
+      canvas.width  = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    };
     const init = () => {
       pts.length = 0;
-      for (let i = 0; i < 60; i++)
-        pts.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: (Math.random()-0.5)*0.3, vy: (Math.random()-0.5)*0.3, s: Math.random()*1.5+0.5 });
+      for (let i = 0; i < COUNT; i++)
+        pts.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.25,
+          vy: (Math.random() - 0.5) * 0.25,
+          s: Math.random() * 1.2 + 0.5,
+        });
     };
-    const draw = () => {
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      const baseColor = theme === 'dark' ? '255,255,255' : '0,0,0';
-      for (let i=0;i<pts.length;i++) {
-        for (let j=i+1;j<pts.length;j++) {
-          const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y, d=Math.sqrt(dx*dx+dy*dy);
-          if (d<130) { ctx.beginPath(); ctx.strokeStyle=`rgba(${baseColor},${0.04*(1-d/130)})`; ctx.lineWidth=0.5; ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[j].x,pts[j].y); ctx.stroke(); }
-        }
-        pts[i].x+=pts[i].vx; pts[i].y+=pts[i].vy;
-        if (pts[i].x<0) pts[i].x=canvas.width; if (pts[i].x>canvas.width) pts[i].x=0;
-        if (pts[i].y<0) pts[i].y=canvas.height; if (pts[i].y>canvas.height) pts[i].y=0;
-        ctx.beginPath(); ctx.arc(pts[i].x,pts[i].y,pts[i].s,0,Math.PI*2);
-        ctx.fillStyle=`rgba(${baseColor},0.18)`; ctx.fill();
+
+    const draw = (now: number) => {
+      raf = requestAnimationFrame(draw);
+      if (!visible) return;
+      const dt = now - lastTime;
+      if (dt < INTERVAL) return;
+      lastTime = now - (dt % INTERVAL);
+
+      const w = canvas.width, h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      /* --- move & draw dots --- */
+      ctx.fillStyle = dotFill;
+      ctx.beginPath();
+      for (let i = 0; i < COUNT; i++) {
+        const p = pts[i];
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0) p.x = w; else if (p.x > w) p.x = 0;
+        if (p.y < 0) p.y = h; else if (p.y > h) p.y = 0;
+        ctx.moveTo(p.x + p.s, p.y);
+        ctx.arc(p.x, p.y, p.s, 0, Math.PI * 2);
       }
-      raf=requestAnimationFrame(draw);
+      ctx.fill();
+
+      /* --- draw lines in single batched path --- */
+      ctx.strokeStyle = lineFill;
+      ctx.lineWidth   = 0.5;
+      ctx.beginPath();
+      for (let i = 0; i < COUNT; i++) {
+        for (let j = i + 1; j < COUNT; j++) {
+          const dx = pts[i].x - pts[j].x;
+          const dy = pts[i].y - pts[j].y;
+          if (dx * dx + dy * dy < MAX_DIST_SQ) {
+            ctx.moveTo(pts[i].x, pts[i].y);
+            ctx.lineTo(pts[j].x, pts[j].y);
+          }
+        }
+      }
+      ctx.stroke();
     };
-    resize(); init(); draw();
-    window.addEventListener('resize', () => { resize(); init(); });
-    return () => cancelAnimationFrame(raf);
+
+    /* Pause when tab hidden or hero off-screen */
+    const onVisibility = () => { visible = document.visibilityState === 'visible'; };
+    const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; }, { threshold: 0 });
+    io.observe(canvas);
+    document.addEventListener('visibilitychange', onVisibility);
+
+    const onResize = () => { resize(); init(); };
+    window.addEventListener('resize', onResize, { passive: true });
+
+    resize(); init();
+    raf = requestAnimationFrame(draw);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      io.disconnect();
+      document.removeEventListener('visibilitychange', onVisibility);
+      window.removeEventListener('resize', onResize);
+    };
   }, [theme]);
 
   /* GSAP entrance */
@@ -70,8 +133,9 @@ export default function Hero() {
 
       {/* Vinheta central */}
       <div className="absolute inset-0 pointer-events-none" style={{
-        background: 'radial-gradient(ellipse 90% 70% at 50% 50%, transparent 30%, rgba(8,8,8,0.4) 65%, var(--c-bg) 100%)',
+        background: 'radial-gradient(ellipse 90% 70% at 50% 50%, transparent 30%, var(--c-bg4) 100%)',
         zIndex: 2,
+        opacity: 0.85,
       }} />
 
       {/* Grid */}
