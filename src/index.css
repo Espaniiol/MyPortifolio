@@ -192,3 +192,13 @@ canvas, video { transition: none !important; }
 
 .animate-float { animation: float 9s ease-in-out infinite; }
 .animate-pulse-soft { animation: pulse-soft 2s ease-in-out infinite; }
+
+@keyframes orbFloat {
+  0%   { translate: 0px 0px; }
+  16%  { translate: 60px -40px; }
+  33%  { translate: 30px  60px; }
+  50%  { translate: -50px 30px; }
+  66%  { translate: 20px -60px; }
+  83%  { translate: -40px 20px; }
+  100% { translate: 0px 0px; }
+}

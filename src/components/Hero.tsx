@@ -5,119 +5,63 @@ import { useApp } from '../contexts/AppContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
+/* Orb definitions — each floats with CSS animation + mouse parallax */
+const ORBS = [
+  { size: 560, top: '-10%', left: '-8%',  gradient: 'radial-gradient(circle at 40% 40%, rgba(100,130,255,0.55), rgba(80,60,200,0.15) 60%, transparent 80%)', duration: '22s', delay: '0s',   parallax: 0.025 },
+  { size: 480, top:  '50%', left:  '65%', gradient: 'radial-gradient(circle at 55% 45%, rgba(160,80,255,0.50), rgba(120,40,200,0.12) 60%, transparent 80%)', duration: '28s', delay: '-8s',  parallax: -0.02 },
+  { size: 420, top:  '60%', left:  '-5%', gradient: 'radial-gradient(circle at 50% 50%, rgba(60,180,255,0.40), rgba(40,120,220,0.10) 60%, transparent 80%)', duration: '20s', delay: '-14s', parallax: 0.018 },
+  { size: 320, top:  '10%', left:  '70%', gradient: 'radial-gradient(circle at 45% 55%, rgba(200,100,255,0.35), rgba(150,60,200,0.08) 60%, transparent 80%)', duration: '26s', delay: '-5s',  parallax: -0.03 },
+];
+
 export default function Hero() {
-  const { t, theme } = useApp();
+  const { t } = useApp();
   const sectionRef = useRef<HTMLElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const orbRefs    = useRef<(HTMLDivElement | null)[]>([]);
 
-  /* Particle canvas — optimized */
+  /* Mouse parallax on orbs */
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d', { alpha: true });
-    if (!ctx) return;
+    let cx = window.innerWidth  / 2;
+    let cy = window.innerHeight / 2;
+    let tx = [0, 0, 0, 0], ty = [0, 0, 0, 0];
+    let rx = [0, 0, 0, 0], ry = [0, 0, 0, 0];
+    let rafId: number;
 
-    let raf: number;
-    let lastTime = 0;
-    let visible = true;
-    const FPS = 30;
-    const INTERVAL = 1000 / FPS;
-    const COUNT = 35;
-    const MAX_DIST = 100;
-    const MAX_DIST_SQ = MAX_DIST * MAX_DIST;
-
-    const baseColor = theme === 'dark' ? '255,255,255' : '0,0,0';
-    const dotFill  = `rgba(${baseColor},0.15)`;
-    const lineFill = `rgba(${baseColor},0.04)`;
-
-    type Pt = { x: number; y: number; vx: number; vy: number; s: number };
-    const pts: Pt[] = [];
-
-    const resize = () => {
-      canvas.width  = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
+    const onMove = (e: MouseEvent) => {
+      const dx = (e.clientX - cx);
+      const dy = (e.clientY - cy);
+      ORBS.forEach((o, i) => { tx[i] = dx * o.parallax; ty[i] = dy * o.parallax; });
     };
-    const init = () => {
-      pts.length = 0;
-      for (let i = 0; i < COUNT; i++)
-        pts.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.25,
-          vy: (Math.random() - 0.5) * 0.25,
-          s: Math.random() * 1.2 + 0.5,
-        });
+    const onResize = () => { cx = window.innerWidth / 2; cy = window.innerHeight / 2; };
+
+    const tick = () => {
+      rafId = requestAnimationFrame(tick);
+      ORBS.forEach((_, i) => {
+        rx[i] += (tx[i] - rx[i]) * 0.06;
+        ry[i] += (ty[i] - ry[i]) * 0.06;
+        const el = orbRefs.current[i];
+        if (el) el.style.transform = `translate(${rx[i]}px, ${ry[i]}px)`;
+      });
     };
 
-    const draw = (now: number) => {
-      raf = requestAnimationFrame(draw);
-      if (!visible) return;
-      const dt = now - lastTime;
-      if (dt < INTERVAL) return;
-      lastTime = now - (dt % INTERVAL);
-
-      const w = canvas.width, h = canvas.height;
-      ctx.clearRect(0, 0, w, h);
-
-      /* --- move & draw dots --- */
-      ctx.fillStyle = dotFill;
-      ctx.beginPath();
-      for (let i = 0; i < COUNT; i++) {
-        const p = pts[i];
-        p.x += p.vx; p.y += p.vy;
-        if (p.x < 0) p.x = w; else if (p.x > w) p.x = 0;
-        if (p.y < 0) p.y = h; else if (p.y > h) p.y = 0;
-        ctx.moveTo(p.x + p.s, p.y);
-        ctx.arc(p.x, p.y, p.s, 0, Math.PI * 2);
-      }
-      ctx.fill();
-
-      /* --- draw lines in single batched path --- */
-      ctx.strokeStyle = lineFill;
-      ctx.lineWidth   = 0.5;
-      ctx.beginPath();
-      for (let i = 0; i < COUNT; i++) {
-        for (let j = i + 1; j < COUNT; j++) {
-          const dx = pts[i].x - pts[j].x;
-          const dy = pts[i].y - pts[j].y;
-          if (dx * dx + dy * dy < MAX_DIST_SQ) {
-            ctx.moveTo(pts[i].x, pts[i].y);
-            ctx.lineTo(pts[j].x, pts[j].y);
-          }
-        }
-      }
-      ctx.stroke();
-    };
-
-    /* Pause when tab hidden or hero off-screen */
-    const onVisibility = () => { visible = document.visibilityState === 'visible'; };
-    const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; }, { threshold: 0 });
-    io.observe(canvas);
-    document.addEventListener('visibilitychange', onVisibility);
-
-    const onResize = () => { resize(); init(); };
-    window.addEventListener('resize', onResize, { passive: true });
-
-    resize(); init();
-    raf = requestAnimationFrame(draw);
-
+    window.addEventListener('mousemove', onMove, { passive: true });
+    window.addEventListener('resize',    onResize, { passive: true });
+    rafId = requestAnimationFrame(tick);
     return () => {
-      cancelAnimationFrame(raf);
-      io.disconnect();
-      document.removeEventListener('visibilitychange', onVisibility);
-      window.removeEventListener('resize', onResize);
+      cancelAnimationFrame(rafId);
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('resize',    onResize);
     };
-  }, [theme]);
+  }, []);
 
   /* GSAP entrance */
   useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 3.0 });
       tl.fromTo('.hero-line', { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1.0, stagger: 0.08, ease: 'power3.out' });
-      tl.fromTo('.hero-sub', { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.4');
-      tl.fromTo('.hero-desc', { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.4');
-      tl.fromTo('.hero-cta', { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3');
-      tl.fromTo('.hero-stats', { opacity: 0 }, { opacity: 1, duration: 0.6 }, '-=0.2');
+      tl.fromTo('.hero-sub',  { opacity: 0, y: 12  }, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.4');
+      tl.fromTo('.hero-desc', { opacity: 0, y: 8   }, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.4');
+      tl.fromTo('.hero-cta',  { opacity: 0, y: 8   }, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3');
+      tl.fromTo('.hero-stats',{ opacity: 0          }, { opacity: 1,       duration: 0.6               },       '-=0.2');
 
       gsap.to('.hero-content', {
         yPercent: 20, ease: 'none',
@@ -128,25 +72,58 @@ export default function Hero() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ background: 'var(--c-bg)' }}>
-      <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }} />
+    <section ref={sectionRef} id="hero"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      style={{ background: 'var(--c-bg)' }}>
 
-      {/* Vinheta central */}
+      {/* ── Floating orbs ── */}
+      {ORBS.map((orb, i) => (
+        <div
+          key={i}
+          ref={el => { orbRefs.current[i] = el; }}
+          className="absolute pointer-events-none will-change-transform"
+          style={{
+            width:      orb.size,
+            height:     orb.size,
+            top:        orb.top,
+            left:       orb.left,
+            borderRadius: '50%',
+            background: orb.gradient,
+            filter:     'blur(72px)',
+            animation:  `orbFloat ${orb.duration} ease-in-out ${orb.delay} infinite`,
+            zIndex:     1,
+          }}
+        />
+      ))}
+
+      {/* Noise overlay — suaviza os orbs */}
       <div className="absolute inset-0 pointer-events-none" style={{
-        background: 'radial-gradient(ellipse 90% 70% at 50% 50%, transparent 30%, var(--c-bg4) 100%)',
+        backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\' opacity=\'0.04\'/%3E%3C/svg%3E")',
+        backgroundSize: '180px',
         zIndex: 2,
-        opacity: 0.85,
+        opacity: 0.35,
       }} />
 
-      {/* Grid */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.025]" style={{
-        backgroundImage: `linear-gradient(var(--c-t70) 1px, transparent 1px), linear-gradient(90deg, var(--c-t70) 1px, transparent 1px)`,
-        backgroundSize: '80px 80px', zIndex: 1,
+      {/* Vinheta radial */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        background: 'radial-gradient(ellipse 80% 65% at 50% 50%, transparent 25%, var(--c-bg) 100%)',
+        zIndex: 3,
       }} />
 
+      {/* Grid pontilhado */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        backgroundImage: `radial-gradient(circle, var(--c-t08) 1px, transparent 1px)`,
+        backgroundSize: '40px 40px',
+        zIndex: 2,
+        opacity: 0.5,
+      }} />
+
+      {/* Content */}
       <div className="hero-content relative z-10 text-center px-6 max-w-5xl mx-auto">
+
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-[11px] font-medium mb-10 hero-sub" style={{ background: 'var(--c-t04)', border: '1px solid var(--c-t08)', color: 'var(--c-t40)' }}>
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-[11px] font-medium mb-10 hero-sub"
+          style={{ background: 'var(--c-t04)', border: '1px solid var(--c-t10)', color: 'var(--c-t40)' }}>
           <span className="w-1.5 h-1.5 rounded-full animate-pulse-soft" style={{ background: 'var(--c-inv)' }} />
           {t('hero.available')}
         </div>
@@ -162,7 +139,8 @@ export default function Hero() {
         <div className="mb-10">
           {['Analista', 'Programador'].map((word, i) => (
             <div key={i} style={{ lineHeight: 0.9 }}>
-              <div className="hero-line inline-block text-[clamp(2.8rem,9vw,7rem)] font-black tracking-tighter" style={{ color: i === 0 ? 'var(--c-text)' : 'var(--c-inv)' }}>
+              <div className="hero-line inline-block text-[clamp(2.8rem,9vw,7rem)] font-black tracking-tighter"
+                style={{ color: i === 0 ? 'var(--c-text)' : 'var(--c-inv)' }}>
                 {word}
               </div>
             </div>
@@ -183,12 +161,14 @@ export default function Hero() {
 
         {/* Desc */}
         <p className="hero-desc text-sm leading-relaxed max-w-lg mx-auto mb-10" style={{ color: 'var(--c-t35)' }}>
-          Desenvolvedor especializado em sistemas ERP corporativos e aplicações legadas, com expertise em Oracle, PL/SQL e integrações de APIs.
+          Desenvolvedor especializado em sistemas ERP corporativos e aplicações legadas,
+          com expertise em Oracle, PL/SQL e integrações de APIs.
         </p>
 
         {/* CTAs */}
         <div className="hero-cta flex flex-col sm:flex-row items-center justify-center gap-3 mb-16">
-          <button onClick={() => document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })}
+          <button
+            onClick={() => document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })}
             className="px-7 py-3 rounded-xl text-sm font-semibold transition-all duration-300 hover:bg-white hover:text-black"
             style={{ background: 'var(--c-t08)', border: '1px solid var(--c-t15)', color: 'var(--c-inv)' }}>
             {t('hero.viewProjects')}
@@ -218,7 +198,6 @@ export default function Hero() {
           ))}
         </div>
       </div>
-
     </section>
   );
 }
