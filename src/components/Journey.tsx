@@ -7,7 +7,8 @@ import { useApp } from '../contexts/AppContext';
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Journey() {
-  const { t } = useApp();
+  const { t, lang } = useApp();
+  const currentEvents = journeyEvents[lang];
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -56,7 +57,7 @@ export default function Journey() {
 
           {/* Top cards — even indices (0,2,4) */}
           <div className={`grid ${cols} ${gap}`}>
-            {journeyEvents.map((e, i) =>
+            {currentEvents.map((e, i) =>
               i % 2 === 0 ? (
                 <Card key={e.year} e={e} i={i} cls="j-top" />
               ) : (
@@ -67,7 +68,7 @@ export default function Journey() {
 
           {/* Top connectors */}
           <div className={`grid ${cols} ${gap} mt-0`}>
-            {journeyEvents.map((_, i) => (
+            {currentEvents.map((_, i) => (
               <div key={i} className="flex justify-center">
                 <div className="w-px" style={{ height: 20, background: i % 2 === 0 ? 'var(--c-t08)' : 'transparent' }} />
               </div>
@@ -79,7 +80,7 @@ export default function Journey() {
             <div className="j-hline absolute top-1/2 left-0 right-0 h-px -translate-y-1/2"
               style={{ background: 'var(--c-t10)' }} />
             <div className={`grid ${cols} ${gap} relative z-10`}>
-              {journeyEvents.map((e, i) => (
+              {currentEvents.map((e, i) => (
                 <div key={i} className="flex justify-center">
                   <div className="j-dot w-2.5 h-2.5 rounded-full"
                     style={{
@@ -94,7 +95,7 @@ export default function Journey() {
 
           {/* Bottom connectors */}
           <div className={`grid ${cols} ${gap}`}>
-            {journeyEvents.map((_, i) => (
+            {currentEvents.map((_, i) => (
               <div key={i} className="flex justify-center">
                 <div className="w-px" style={{ height: 20, background: i % 2 === 1 ? 'var(--c-t08)' : 'transparent' }} />
               </div>
@@ -103,7 +104,7 @@ export default function Journey() {
 
           {/* Bottom cards — odd indices (1,3,5) */}
           <div className={`grid ${cols} ${gap}`}>
-            {journeyEvents.map((e, i) =>
+            {currentEvents.map((e, i) =>
               i % 2 === 1 ? (
                 <Card key={e.year} e={e} i={i} cls="j-bot" />
               ) : (
@@ -115,7 +116,7 @@ export default function Journey() {
 
         {/* ── Mobile fallback grid ────────────────────────── */}
         <div className="lg:hidden grid sm:grid-cols-2 gap-4">
-          {journeyEvents.map((e, i) => (
+          {currentEvents.map((e, i) => (
             <Card key={e.year} e={e} i={i} cls="j-top" />
           ))}
         </div>
@@ -126,7 +127,7 @@ export default function Journey() {
 }
 
 /* ── Card component ─────────────────────────────────────────── */
-function Card({ e, i, cls }: { e: typeof journeyEvents[0]; i: number; cls: string }) {
+function Card({ e, i, cls }: { e: typeof journeyEvents['pt'][0]; i: number; cls: string }) {
   return (
     <div className={`${cls} relative p-4 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1`}
       style={{ background: 'var(--c-bg2)', border: '1px solid var(--c-t08)', boxShadow: '0 2px 8px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.03)' }}>

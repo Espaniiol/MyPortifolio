@@ -7,7 +7,7 @@ import { useApp } from '../contexts/AppContext';
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Experience() {
-  const { t } = useApp();
+  const { t, lang } = useApp();
   const sectionRef = useRef<HTMLElement>(null);
   const [active, setActive] = useState<number | null>(null);
 
@@ -39,7 +39,7 @@ export default function Experience() {
           <div className="timeline-line absolute left-0 md:left-[calc(50%-0.5px)] top-0 bottom-0 w-px" style={{ background: 'var(--c-t10)' }} />
 
           <div className="space-y-10">
-            {experiences.map((exp, i) => (
+            {experiences[lang].map((exp, i) => (
               <div key={exp.id} className={`exp-card relative flex ${i%2===0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8 pl-8 md:pl-0`}>
                 {/* Dot */}
                 <div className="tl-dot absolute left-0 md:left-1/2 top-6 -translate-x-1/2 w-3 h-3 rounded-full z-10 cursor-pointer" style={{ background: exp.color, border: '2px solid var(--c-bg)' }} onClick={() => setActive(active===exp.id ? null : exp.id)} />

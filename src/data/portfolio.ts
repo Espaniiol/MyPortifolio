@@ -1,99 +1,266 @@
+
+
 export const personalInfo = {
   name: 'Guilherme',
   lastName: 'E. Schlickmann',
-  title: 'Analista Programador | Full Stack Developer',
-  subtitle: 'Delphi · Oracle · ERP Systems',
-  description:
-    'Desenvolvedor com experiência em sistemas ERP e aplicações legadas, atuando principalmente com Delphi e bancos de dados Oracle/PostgreSQL. Experiência em stored procedures, triggers e integrações de APIs corporativas.',
   email: 'Guilhermeespaniol@gmail.com',
   github: 'https://github.com/Espaniiol',
   linkedin: 'https://linkedin.com/in/gulherme-espaniol',
   location: 'Marmeleiro — PR',
+  
+  pt: {
+    heroTitle: ['Analista', 'Programador'],
+    heroSubtitle: 'Delphi · Oracle · ERP Systems',
+    heroRole: 'Full Stack Developer',
+    heroDesc: 'Desenvolvedor especializado em sistemas ERP corporativos e aplicações legadas, com expertise em Oracle, PL/SQL e integrações de APIs.',
+    aboutP1: 'Desenvolvedor com experiência em <span style="color: var(--c-text); font-weight: 600;">sistemas ERP e aplicações legadas</span>, atuando principalmente com Delphi e bancos de dados Oracle/PostgreSQL. Formado em Análise e Desenvolvimento de Sistemas pela <span style="color: var(--c-text);">UNIPAR</span>.',
+    aboutP2: 'Tenho expertise em desenvolvimento de <span style="color: var(--c-text); font-weight: 600;">stored procedures, triggers e integrações de APIs</span> corporativas. Atuo também em análise de código, validação de regras de negócio e melhoria de performance em rotinas críticas.',
+    aboutP3: 'Familiaridade com metodologias ágeis e ferramentas como <span style="color: var(--c-text);">Jira, Git, Postman e Swagger</span>. Sempre evoluindo no ecossistema moderno — React, TypeScript, Python e Docker fazem parte do meu repertório em constante crescimento.',
+    statusLoc: 'Marmeleiro — PR'
+  },
+  en: {
+    heroTitle: ['Analyst', 'Programmer'],
+    heroSubtitle: 'Delphi · Oracle · ERP Systems',
+    heroRole: 'Full Stack Developer',
+    heroDesc: 'Developer specialized in corporate ERP systems and legacy applications, with expertise in Oracle, PL/SQL, and API integrations.',
+    aboutP1: 'Developer with experience in <span style="color: var(--c-text); font-weight: 600;">ERP systems and legacy applications</span>, working mainly with Delphi and Oracle/PostgreSQL databases. Graduated in Systems Analysis and Development from <span style="color: var(--c-text);">UNIPAR</span>.',
+    aboutP2: 'Expertise in developing <span style="color: var(--c-text); font-weight: 600;">stored procedures, triggers, and corporate API integrations</span>. Also active in code analysis, business rule validation, and performance improvement in critical routines.',
+    aboutP3: 'Familiar with agile methodologies and tools like <span style="color: var(--c-text);">Jira, Git, Postman, and Swagger</span>. Always evolving in the modern ecosystem — React, TypeScript, Python, and Docker are part of my constantly growing repertoire.',
+    statusLoc: 'Marmeleiro — PR, Brazil'
+  },
+  es: {
+    heroTitle: ['Analista', 'Programador'],
+    heroSubtitle: 'Delphi · Oracle · Sistemas ERP',
+    heroRole: 'Desarrollador Full Stack',
+    heroDesc: 'Desarrollador especializado en sistemas ERP corporativos y aplicaciones heredadas, con experiencia en Oracle, PL/SQL e integraciones de APIs.',
+    aboutP1: 'Desarrollador con experiencia en <span style="color: var(--c-text); font-weight: 600;">sistemas ERP y aplicaciones heredadas</span>, trabajando principalmente con Delphi y bases de datos Oracle/PostgreSQL. Graduado en Análisis y Desarrollo de Sistemas por <span style="color: var(--c-text);">UNIPAR</span>.',
+    aboutP2: 'Experiencia en el desarrollo de <span style="color: var(--c-text); font-weight: 600;">procedimientos almacenados, triggers e integraciones de APIs corporativas</span>. También enfocado en el análisis de código, validación de reglas de negocio y mejora de rendimiento en rutinas críticas.',
+    aboutP3: 'Familiarizado con metodologías ágiles y herramientas como <span style="color: var(--c-text);">Jira, Git, Postman y Swagger</span>. Siempre evolucionando en el ecosistema moderno — React, TypeScript, Python y Docker son parte de mi repertorio en constante crecimiento.',
+    statusLoc: 'Marmeleiro — PR, Brasil'
+  }
 };
 
-export const experiences = [
-  {
-    id: 1,
-    company: 'VIASOFT',
-    role: 'Analista Programador JR',
-    period: '04/2025 — Atual',
-    description:
-      'Desenvolvimento e manutenção de stored procedures e triggers Oracle para automação de regras de negócio em sistemas ERP. Implementação de validações e integração de dados para cobrança e pedidos. Revisão de código Delphi com foco em performance e estabilidade. Criação de scripts de personalização para usuários em sistemas legados. Home Office.',
-    techs: ['Delphi', 'Oracle', 'PL/SQL', 'SQL', 'Git'],
-    color: '#ffffff',
-  },
-  {
-    id: 2,
-    company: 'ELLON TECNOLOGIA EM GESTÃO',
-    role: 'Analista de Teste Q/A JR',
-    period: '01/2024 — 04/2025',
-    description:
-      'Planejamento, execução e documentação de testes manuais. Testes em APIs Mobile com Postman e Swagger. Validação de dados em PostgreSQL/SQL Server. Code Review em Delphi.',
-    techs: ['Postman', 'Swagger', 'PostgreSQL', 'Delphi', 'SQL Server'],
-    color: '#aaaaaa',
-  },
-  {
-    id: 3,
-    company: 'JAIR SCHLICKMANN TRANSPORTES ME',
-    role: 'Auxiliar de Logística',
-    period: '01/2020 — 01/2024',
-    description:
-      'Emissão de CT-e e MDF-e. Criação de planilhas para controle financeiro e operacional. Emissão de GNRE. Monitoramento de transportes via Trucks Control.',
-    techs: ['Excel', 'Trucks Control', 'CT-e', 'MDF-e'],
-    color: '#555555',
-  },
-];
+export const experiences = {
+  pt: [
+    {
+      id: 1,
+      company: 'VIASOFT',
+      role: 'Analista Programador JR',
+      period: '04/2025 — Atual',
+      description: 'Desenvolvimento e manutenção de stored procedures e triggers Oracle para automação de regras de negócio em sistemas ERP. Implementação de validações e integração de dados para cobrança e pedidos. Revisão de código Delphi com foco em performance e estabilidade. Criação de scripts de personalização para usuários em sistemas legados. Home Office.',
+      techs: ['Delphi', 'Oracle', 'PL/SQL', 'SQL', 'Git'],
+      color: '#ffffff',
+    },
+    {
+      id: 2,
+      company: 'ELLON TECNOLOGIA EM GESTÃO',
+      role: 'Analista de Teste Q/A JR',
+      period: '01/2024 — 04/2025',
+      description: 'Planejamento, execução e documentação de testes manuais. Testes em APIs Mobile com Postman e Swagger. Validação de dados em PostgreSQL/SQL Server. Code Review em Delphi.',
+      techs: ['Postman', 'Swagger', 'PostgreSQL', 'Delphi', 'SQL Server'],
+      color: '#aaaaaa',
+    },
+    {
+      id: 3,
+      company: 'JAIR SCHLICKMANN TRANSPORTES ME',
+      role: 'Auxiliar de Logística',
+      period: '01/2020 — 01/2024',
+      description: 'Emissão de CT-e e MDF-e. Criação de planilhas para controle financeiro e operacional. Emissão de GNRE. Monitoramento de transportes via Trucks Control.',
+      techs: ['Excel', 'Trucks Control', 'CT-e', 'MDF-e'],
+      color: '#555555',
+    },
+  ],
+  en: [
+    {
+      id: 1,
+      company: 'VIASOFT',
+      role: 'JR Programmer Analyst',
+      period: '04/2025 — Present',
+      description: 'Development and maintenance of Oracle stored procedures and triggers for business rule automation in ERP systems. Implementation of validations and data integration for billing and orders. Delphi code review focusing on performance and stability. Creation of customization scripts for users in legacy systems. Home Office.',
+      techs: ['Delphi', 'Oracle', 'PL/SQL', 'SQL', 'Git'],
+      color: '#ffffff',
+    },
+    {
+      id: 2,
+      company: 'ELLON TECNOLOGIA EM GESTÃO',
+      role: 'JR QA Test Analyst',
+      period: '01/2024 — 04/2025',
+      description: 'Planning, execution, and documentation of manual tests. Mobile API testing with Postman and Swagger. Data validation in PostgreSQL/SQL Server. Code Review in Delphi.',
+      techs: ['Postman', 'Swagger', 'PostgreSQL', 'Delphi', 'SQL Server'],
+      color: '#aaaaaa',
+    },
+    {
+      id: 3,
+      company: 'JAIR SCHLICKMANN TRANSPORTES ME',
+      role: 'Logistics Assistant',
+      period: '01/2020 — 01/2024',
+      description: 'Issuance of CT-e and MDF-e (transport documents). Creation of spreadsheets for financial and operational control. Issuance of GNRE. Transport monitoring via Trucks Control.',
+      techs: ['Excel', 'Trucks Control', 'CT-e', 'MDF-e'],
+      color: '#555555',
+    },
+  ],
+  es: [
+    {
+      id: 1,
+      company: 'VIASOFT',
+      role: 'Analista Programador JR',
+      period: '04/2025 — Presente',
+      description: 'Desarrollo y mantenimiento de procedimientos almacenados y triggers de Oracle para la automatización de reglas de negocio en sistemas ERP. Implementación de validaciones e integración de datos para facturación y pedidos. Revisión de código Delphi con enfoque en rendimiento y estabilidad. Creación de scripts de personalización para usuarios en sistemas heredados. Home Office.',
+      techs: ['Delphi', 'Oracle', 'PL/SQL', 'SQL', 'Git'],
+      color: '#ffffff',
+    },
+    {
+      id: 2,
+      company: 'ELLON TECNOLOGIA EM GESTÃO',
+      role: 'Analista de Pruebas QA JR',
+      period: '01/2024 — 04/2025',
+      description: 'Planificación, ejecución y documentación de pruebas manuales. Pruebas de APIs móviles con Postman y Swagger. Validación de datos en PostgreSQL/SQL Server. Revisión de código en Delphi.',
+      techs: ['Postman', 'Swagger', 'PostgreSQL', 'Delphi', 'SQL Server'],
+      color: '#aaaaaa',
+    },
+    {
+      id: 3,
+      company: 'JAIR SCHLICKMANN TRANSPORTES ME',
+      role: 'Asistente de Logística',
+      period: '01/2020 — 01/2024',
+      description: 'Emisión de CT-e y MDF-e (documentos de transporte). Creación de hojas de cálculo para control financiero y operativo. Emisión de GNRE. Monitoreo de transportes vía Trucks Control.',
+      techs: ['Excel', 'Trucks Control', 'CT-e', 'MDF-e'],
+      color: '#555555',
+    },
+  ]
+};
 
-export const projects = [
-  {
-    id: 1,
-    title: 'Sistema de Controle de Fretes',
-    description:
-      'Aplicação desktop desenvolvida com Electron para controle local de fretes — cadastro de cargas, rotas, motoristas e relatórios operacionais.',
-    longDescription:
-      'Sistema desktop completo construído com Electron, permitindo operação 100% local sem depender de internet. Inclui cadastro de fretes, controle de motoristas, rotas, geração de relatórios e histórico de operações. Desenvolvido para otimizar o dia a dia de pequenas transportadoras.',
-    image: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=800&q=80',
-    video: '/videos/frete-app.mp4',
-    poster: '/videos/frete-thumb.jpg',
-    techs: ['Electron', 'JavaScript', 'HTML', 'CSS', 'PostgreSQL'],
-    github: 'https://github.com/Espaniiol',
-    featured: true,
-    color: '#ffffff',
-    year: '2025',
-  },
-  {
-    id: 2,
-    title: 'Sistema de Clínica Psiquiátrica',
-    description:
-      'Sistema desktop para gestão de clínica médica psiquiátrica — prontuários, agendamentos, pacientes e controle de consultas.',
-    longDescription:
-      'Sistema completo de gestão clínica desenvolvido para uso interno em consultórios e clínicas de psiquiatria. Permite controle de pacientes, histórico de consultas, prontuários digitais e agendamento de atendimentos.',
-    image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80',
-    video: '/videos/clinica-app.mp4',
-    techs: ['React', 'PostgreSQL', 'JavaScript', 'HTML', 'CSS'],
-    github: 'https://github.com/Espaniiol',
-    featured: true,
-    color: '#aaaaaa',
-    year: '2025',
-  },
-  {
-    id: 3,
-    title: 'App Loja de Roupas',
-    description:
-      'Aplicativo mobile em desenvolvimento para loja de roupas — catálogo de produtos, carrinho e experiência de compra moderna.',
-    longDescription:
-      'Aplicativo mobile em desenvolvimento com foco em experiência de compra fluida. Catálogo de produtos com filtros, carrinho de compras, favoritos e interface moderna pensada para conversão. Projeto em andamento.',
-    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80',
-    video: '/videos/loja-mobile.mp4',
-    mobile: true,
-    techs: ['React Native', 'TypeScript', 'Expo'],
-    github: 'https://github.com/Espaniiol',
-    featured: true,
-    color: '#888888',
-    year: '2025',
-  },
-
-];
+export const projects = {
+  pt: [
+    {
+      id: 1,
+      title: 'Sistema de Controle de Fretes',
+      description: 'Aplicação desktop desenvolvida com Electron para controle local de fretes — cadastro de cargas, rotas, motoristas e relatórios operacionais.',
+      longDescription: 'Sistema desktop completo construído com Electron, permitindo operação 100% local sem depender de internet. Inclui cadastro de fretes, controle de motoristas, rotas, geração de relatórios e histórico de operações. Desenvolvido para otimizar o dia a dia de pequenas transportadoras.',
+      image: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=800&q=80',
+      video: '/videos/frete-app.mp4',
+      poster: '/videos/frete-thumb.jpg',
+      techs: ['Electron', 'JavaScript', 'HTML', 'CSS', 'PostgreSQL'],
+      github: 'https://github.com/Espaniiol',
+      featured: true,
+      color: '#ffffff',
+      year: '2025',
+    },
+    {
+      id: 2,
+      title: 'Sistema de Clínica Psiquiátrica',
+      description: 'Sistema desktop para gestão de clínica médica psiquiátrica — prontuários, agendamentos, pacientes e controle de consultas.',
+      longDescription: 'Sistema completo de gestão clínica desenvolvido para uso interno em consultórios e clínicas de psiquiatria. Permite controle de pacientes, histórico de consultas, prontuários digitais e agendamento de atendimentos.',
+      image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80',
+      video: '/videos/clinica-app.mp4',
+      techs: ['React', 'PostgreSQL', 'JavaScript', 'HTML', 'CSS'],
+      github: 'https://github.com/Espaniiol',
+      featured: true,
+      color: '#aaaaaa',
+      year: '2025',
+    },
+    {
+      id: 3,
+      title: 'App Loja de Roupas',
+      description: 'Aplicativo mobile em desenvolvimento para loja de roupas — catálogo de produtos, carrinho e experiência de compra moderna.',
+      longDescription: 'Aplicativo mobile em desenvolvimento com foco em experiência de compra fluida. Catálogo de produtos com filtros, carrinho de compras, favoritos e interface moderna pensada para conversão. Projeto em andamento.',
+      image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80',
+      video: '/videos/loja-mobile.mp4',
+      mobile: true,
+      techs: ['React Native', 'TypeScript', 'Expo'],
+      github: 'https://github.com/Espaniiol',
+      featured: true,
+      color: '#888888',
+      year: '2025',
+    },
+  ],
+  en: [
+    {
+      id: 1,
+      title: 'Freight Control System',
+      description: 'Desktop application developed with Electron for local freight control — cargo registration, routes, drivers, and operational reports.',
+      longDescription: 'Complete desktop system built with Electron, allowing 100% local operation without relying on the internet. Includes freight registration, driver control, routes, report generation, and operation history. Developed to optimize the daily routines of small transport companies.',
+      image: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=800&q=80',
+      video: '/videos/frete-app.mp4',
+      poster: '/videos/frete-thumb.jpg',
+      techs: ['Electron', 'JavaScript', 'HTML', 'CSS', 'PostgreSQL'],
+      github: 'https://github.com/Espaniiol',
+      featured: true,
+      color: '#ffffff',
+      year: '2025',
+    },
+    {
+      id: 2,
+      title: 'Psychiatric Clinic System',
+      description: 'Desktop system for psychiatric medical clinic management — medical records, scheduling, patients, and appointment control.',
+      longDescription: 'Complete clinical management system developed for internal use in psychiatric offices and clinics. Allows patient control, appointment history, digital medical records, and scheduling of visits.',
+      image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80',
+      video: '/videos/clinica-app.mp4',
+      techs: ['React', 'PostgreSQL', 'JavaScript', 'HTML', 'CSS'],
+      github: 'https://github.com/Espaniiol',
+      featured: true,
+      color: '#aaaaaa',
+      year: '2025',
+    },
+    {
+      id: 3,
+      title: 'Clothing Store App',
+      description: 'Mobile application in development for a clothing store — product catalog, cart, and modern shopping experience.',
+      longDescription: 'Mobile application in development focusing on a fluid shopping experience. Product catalog with filters, shopping cart, favorites, and a modern interface designed for conversion. Ongoing project.',
+      image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80',
+      video: '/videos/loja-mobile.mp4',
+      mobile: true,
+      techs: ['React Native', 'TypeScript', 'Expo'],
+      github: 'https://github.com/Espaniiol',
+      featured: true,
+      color: '#888888',
+      year: '2025',
+    },
+  ],
+  es: [
+    {
+      id: 1,
+      title: 'Sistema de Control de Fletes',
+      description: 'Aplicación de escritorio desarrollada con Electron para el control local de fletes — registro de cargas, rutas, conductores y reportes operativos.',
+      longDescription: 'Sistema de escritorio completo construido con Electron, que permite una operación 100% local sin depender de internet. Incluye registro de fletes, control de conductores, rutas, generación de reportes e historial de operaciones. Desarrollado para optimizar el día a día de pequeñas empresas de transporte.',
+      image: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=800&q=80',
+      video: '/videos/frete-app.mp4',
+      poster: '/videos/frete-thumb.jpg',
+      techs: ['Electron', 'JavaScript', 'HTML', 'CSS', 'PostgreSQL'],
+      github: 'https://github.com/Espaniiol',
+      featured: true,
+      color: '#ffffff',
+      year: '2025',
+    },
+    {
+      id: 2,
+      title: 'Sistema de Clínica Psiquiátrica',
+      description: 'Sistema de escritorio para la gestión de clínica médica psiquiátrica — historias clínicas, citas, pacientes y control de consultas.',
+      longDescription: 'Sistema completo de gestión clínica desarrollado para uso interno en consultorios y clínicas de psiquiatría. Permite el control de pacientes, historial de consultas, historias clínicas digitales y programación de citas.',
+      image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80',
+      video: '/videos/clinica-app.mp4',
+      techs: ['React', 'PostgreSQL', 'JavaScript', 'HTML', 'CSS'],
+      github: 'https://github.com/Espaniiol',
+      featured: true,
+      color: '#aaaaaa',
+      year: '2025',
+    },
+    {
+      id: 3,
+      title: 'App Tienda de Ropa',
+      description: 'Aplicación móvil en desarrollo para tienda de ropa — catálogo de productos, carrito y experiencia de compra moderna.',
+      longDescription: 'Aplicación móvil en desarrollo con enfoque en una experiencia de compra fluida. Catálogo de productos con filtros, carrito de compras, favoritos e interfaz moderna diseñada para la conversión. Proyecto en curso.',
+      image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80',
+      video: '/videos/loja-mobile.mp4',
+      mobile: true,
+      techs: ['React Native', 'TypeScript', 'Expo'],
+      github: 'https://github.com/Espaniiol',
+      featured: true,
+      color: '#888888',
+      year: '2025',
+    },
+  ]
+};
 
 export const techStack = [
   { name: 'Delphi',      category: 'Language',  icon: '🏛️', level: 85, color: '#e0e0e0' },
@@ -108,52 +275,44 @@ export const techStack = [
   { name: 'Git',         category: 'DevOps',    icon: '🌿', level: 82, color: '#cccccc' },
 ];
 
-export const journeyEvents = [
-  {
-    year: '2020',
-    title: 'Entrada no Mercado',
-    description: 'Iniciei minha carreira na área logística, desenvolvendo habilidades analíticas e domínio de sistemas corporativos — base sólida para o que viria na TI.',
-    icon: '🚀',
-    color: '#888888',
-  },
-  {
-    year: '2022',
-    title: 'Graduação em ADS',
-    description: 'Ingressei em Análise e Desenvolvimento de Sistemas na UNIPAR. Algoritmos, banco de dados, programação orientada a objetos e os fundamentos que moldaram minha visão técnica.',
-    icon: '🎓',
-    color: '#aaaaaa',
-  },
-  {
-    year: '2023',
-    title: 'Imersão Técnica',
-    description: 'Intensifiquei estudos em Delphi, Oracle, Python e JavaScript. Completei cursos na Alura e Udemy, construindo portfólio técnico e consolidando banco de dados.',
-    icon: '💻',
-    color: '#999999',
-  },
-  {
-    year: '2024',
-    title: 'Primeiro Emprego em TI',
-    description: 'Analista Q/A JR na Ellon Tecnologia. Testes manuais, automação de APIs com Postman/Swagger e Code Review em Delphi. A virada de chave na carreira.',
-    icon: '⚙️',
-    color: '#bbbbbb',
-  },
-  {
-    year: '2025',
-    title: 'Analista Programador',
-    description: 'Desenvolvedor na VIASOFT. Criando stored procedures Oracle, triggers e integrações para sistemas ERP corporativos. Home Office.',
-    icon: '⚡',
-    color: '#dddddd',
-  },
-  {
-    year: 'Futuro',
-    title: 'Próximos Objetivos',
-    description: 'Evoluir em full stack moderno, arquiteturas cloud, contribuir para open source e me tornar referência em integração de sistemas ERP com tecnologias modernas.',
-    icon: '◎',
-    color: '#ffffff',
-  },
-];
+export const journeyEvents = {
+  pt: [
+    { year: '2020', title: 'Entrada no Mercado', description: 'Iniciei minha carreira na área logística, desenvolvendo habilidades analíticas e domínio de sistemas corporativos — base sólida para o que viria na TI.', icon: '🚀', color: '#888888' },
+    { year: '2022', title: 'Graduação em ADS', description: 'Ingressei em Análise e Desenvolvimento de Sistemas na UNIPAR. Algoritmos, banco de dados, programação orientada a objetos e os fundamentos que moldaram minha visão técnica.', icon: '🎓', color: '#aaaaaa' },
+    { year: '2023', title: 'Imersão Técnica', description: 'Intensifiquei estudos em Delphi, Oracle, Python e JavaScript. Completei cursos na Alura e Udemy, construindo portfólio técnico e consolidando banco de dados.', icon: '💻', color: '#999999' },
+    { year: '2024', title: 'Primeiro Emprego em TI', description: 'Analista Q/A JR na Ellon Tecnologia. Testes manuais, automação de APIs com Postman/Swagger e Code Review em Delphi. A virada de chave na carreira.', icon: '⚙️', color: '#bbbbbb' },
+    { year: '2025', title: 'Analista Programador', description: 'Desenvolvedor na VIASOFT. Criando stored procedures Oracle, triggers e integrações para sistemas ERP corporativos. Home Office.', icon: '⚡', color: '#dddddd' },
+    { year: 'Futuro', title: 'Próximos Objetivos', description: 'Evoluir em full stack moderno, arquiteturas cloud, contribuir para open source e me tornar referência em integração de sistemas ERP com tecnologias modernas.', icon: '◎', color: '#ffffff' },
+  ],
+  en: [
+    { year: '2020', title: 'Market Entry', description: 'Started my career in logistics, developing analytical skills and mastery of corporate systems — a solid foundation for what was to come in IT.', icon: '🚀', color: '#888888' },
+    { year: '2022', title: 'Degree in SAD', description: 'Started Systems Analysis and Development at UNIPAR. Algorithms, databases, object-oriented programming, and the fundamentals that shaped my technical vision.', icon: '🎓', color: '#aaaaaa' },
+    { year: '2023', title: 'Technical Immersion', description: 'Intensified studies in Delphi, Oracle, Python, and JavaScript. Completed courses on Alura and Udemy, building a technical portfolio and consolidating database knowledge.', icon: '💻', color: '#999999' },
+    { year: '2024', title: 'First IT Job', description: 'JR QA Analyst at Ellon Tecnologia. Manual testing, API automation with Postman/Swagger, and Code Review in Delphi. The turning point in my career.', icon: '⚙️', color: '#bbbbbb' },
+    { year: '2025', title: 'Programmer Analyst', description: 'Developer at VIASOFT. Creating Oracle stored procedures, triggers, and integrations for corporate ERP systems. Home Office.', icon: '⚡', color: '#dddddd' },
+    { year: 'Future', title: 'Next Goals', description: 'Evolve in modern full stack, cloud architectures, contribute to open source, and become a reference in integrating ERP systems with modern technologies.', icon: '◎', color: '#ffffff' },
+  ],
+  es: [
+    { year: '2020', title: 'Entrada al Mercado', description: 'Inicié mi carrera en el área de logística, desarrollando habilidades analíticas y dominio de sistemas corporativos — una base sólida para lo que vendría en TI.', icon: '🚀', color: '#888888' },
+    { year: '2022', title: 'Graduación en ADS', description: 'Ingresé en Análisis y Desarrollo de Sistemas en la UNIPAR. Algoritmos, bases de datos, programación orientada a objetos y los fundamentos que moldearon mi visión técnica.', icon: '🎓', color: '#aaaaaa' },
+    { year: '2023', title: 'Inmersión Técnica', description: 'Intensifiqué mis estudios en Delphi, Oracle, Python y JavaScript. Completé cursos en Alura y Udemy, construyendo un portafolio técnico y consolidando conocimientos en bases de datos.', icon: '💻', color: '#999999' },
+    { year: '2024', title: 'Primer Empleo en TI', description: 'Analista QA JR en Ellon Tecnologia. Pruebas manuales, automatización de APIs con Postman/Swagger y revisión de código en Delphi. El punto de inflexión en mi carrera.', icon: '⚙️', color: '#bbbbbb' },
+    { year: '2025', title: 'Analista Programador', description: 'Desarrollador en VIASOFT. Creando procedimientos almacenados en Oracle, triggers e integraciones para sistemas ERP corporativos. Home Office.', icon: '⚡', color: '#dddddd' },
+    { year: 'Futuro', title: 'Próximos Objetivos', description: 'Evolucionar en full stack moderno, arquitecturas cloud, contribuir al código abierto y convertirme en un referente en la integración de sistemas ERP con tecnologías modernas.', icon: '◎', color: '#ffffff' },
+  ]
+};
 
-export const stats = [
-  { value: 5, suffix: '+', label: 'Anos de Experiência' },
-  { value: 10, suffix: '+', label: 'Tecnologias' },
-];
+export const stats = {
+  pt: [
+    { value: 5, suffix: '+', label: 'Anos de Experiência' },
+    { value: 10, suffix: '+', label: 'Tecnologias' },
+  ],
+  en: [
+    { value: 5, suffix: '+', label: 'Years of Experience' },
+    { value: 10, suffix: '+', label: 'Technologies' },
+  ],
+  es: [
+    { value: 5, suffix: '+', label: 'Años de Experiencia' },
+    { value: 10, suffix: '+', label: 'Tecnologías' },
+  ]
+};

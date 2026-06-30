@@ -1,13 +1,14 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { stats } from '../data/portfolio';
+import { stats, personalInfo } from '../data/portfolio';
 import { useApp } from '../contexts/AppContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
-  const { t } = useApp();
+  const { t, lang } = useApp();
+  const info = personalInfo[lang];
   const sectionRef = useRef<HTMLElement>(null);
   const counterRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
@@ -22,7 +23,7 @@ export default function About() {
       gsap.fromTo('.stat-item', { opacity: 0, y: 20 },
         { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: 'power3.out', scrollTrigger: { trigger: '.stats-row', start: 'top 82%' } });
 
-      stats.forEach((s, i) => {
+      stats[lang].forEach((s, i) => {
         const el = counterRefs.current[i];
         if (!el) return;
         const o = { val: 0 };
@@ -54,15 +55,9 @@ export default function About() {
         <div className="about-body grid lg:grid-cols-[1fr_340px] gap-16 items-start">
           {/* Text col */}
           <div className="space-y-5">
-            <p className="about-text text-base leading-relaxed" style={{ color: 'var(--c-t50)' }}>
-              Desenvolvedor com experiência em <span style={{ color: 'var(--c-text)', fontWeight: 600 }}>sistemas ERP e aplicações legadas</span>, atuando principalmente com Delphi e bancos de dados Oracle/PostgreSQL. Formado em Análise e Desenvolvimento de Sistemas pela <span style={{ color: 'var(--c-text)' }}>UNIPAR</span>.
-            </p>
-            <p className="about-text text-base leading-relaxed" style={{ color: 'var(--c-t50)' }}>
-              Tenho expertise em desenvolvimento de <span style={{ color: 'var(--c-text)', fontWeight: 600 }}>stored procedures, triggers e integrações de APIs</span> corporativas. Atuo também em análise de código, validação de regras de negócio e melhoria de performance em rotinas críticas.
-            </p>
-            <p className="about-text text-base leading-relaxed" style={{ color: 'var(--c-t50)' }}>
-              Familiaridade com metodologias ágeis e ferramentas como <span style={{ color: 'var(--c-text)' }}>Jira, Git, Postman e Swagger</span>. Sempre evoluindo no ecossistema moderno — React, TypeScript, Python e Docker fazem parte do meu repertório em constante crescimento.
-            </p>
+            <p className="about-text text-base leading-relaxed" style={{ color: 'var(--c-t50)' }} dangerouslySetInnerHTML={{ __html: info.aboutP1 }} />
+            <p className="about-text text-base leading-relaxed" style={{ color: 'var(--c-t50)' }} dangerouslySetInnerHTML={{ __html: info.aboutP2 }} />
+            <p className="about-text text-base leading-relaxed" style={{ color: 'var(--c-t50)' }} dangerouslySetInnerHTML={{ __html: info.aboutP3 }} />
 
             {/* Tags */}
             <div className="about-text flex flex-wrap gap-2 pt-2">
@@ -73,10 +68,10 @@ export default function About() {
 
             {/* Stats row */}
             <div className="stats-row grid grid-cols-4 gap-6 pt-8 border-t" style={{ borderColor: 'var(--c-t06)' }}>
-              {stats.map((s, i) => (
+              {stats[lang].map((s, i) => (
                 <div key={s.label} className="stat-item">
                   <div className="text-2xl font-black tabular-nums" style={{ color: 'var(--c-text)' }}>
-                    <span ref={el => { counterRefs.current[i] = el; }}>0</span>{s.suffix}
+                    <span ref={el => { counterRefs.current[i] = el; }}>{s.value}</span>{s.suffix}
                   </div>
                   <div className="text-[11px] uppercase tracking-wider mt-1" style={{ color: 'var(--c-t30)' }}>{s.label}</div>
                 </div>
@@ -117,7 +112,7 @@ export default function About() {
 
               {/* Location badge */}
               <div className="absolute -top-3 -right-3 px-3 py-2 rounded-xl" style={{ background: 'var(--c-bg3)', border: '1px solid var(--c-t08)' }}>
-                <div className="text-[11px] font-medium" style={{ color: 'var(--c-t40)' }}>📍 Marmeleiro — PR</div>
+                <div className="text-[11px] font-medium" style={{ color: 'var(--c-t40)' }}>📍 {info.statusLoc}</div>
               </div>
             </div>
           </div>

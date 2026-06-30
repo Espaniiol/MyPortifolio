@@ -147,7 +147,7 @@ function Modal({ p, onClose }: { p: Project; onClose: () => void }) {
 
 /* ── Main ───────────────────────────────────────────────────── */
 export default function Projects() {
-  const { t } = useApp();
+  const { t, lang } = useApp();
   const sectionRef = useRef<HTMLElement>(null);
   const [selected, setSelected] = useState<Project | null>(null);
 
@@ -161,8 +161,9 @@ export default function Projects() {
     return () => ctx.revert();
   }, []);
 
-  const featured = projects.filter(p => p.featured) as Project[];
-  const others   = projects.filter(p => !p.featured) as Project[];
+  const currentProjects = projects[lang];
+  const featured = currentProjects.filter(p => p.featured) as Project[];
+  const others   = currentProjects.filter(p => !p.featured) as Project[];
 
   return (
     <section ref={sectionRef} id="projects" className="py-32" style={{ background: 'var(--c-bg)' }}>

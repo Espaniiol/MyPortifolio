@@ -34,11 +34,11 @@ export default function Navbar() {
   const logoRef    = useRef<HTMLButtonElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const [activeSection, setActiveSection] = useState('');
-  const [hoveredLink, setHoveredLink]     = useState<string | null>(null);
+  const [isDockHovered, setIsDockHovered] = useState(false);
   const [menuOpen, setMenuOpen]           = useState(false);
 
   useEffect(() => {
-    gsap.fromTo(dockRef.current,  { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 3.0 });
+    gsap.fromTo(dockRef.current,  { opacity: 0 }, { opacity: 1, duration: 0.8, ease: 'power3.out', delay: 3.0 });
     gsap.fromTo(logoRef.current,  { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out', delay: 3.1 });
 
     const io = new IntersectionObserver(
@@ -59,6 +59,9 @@ export default function Navbar() {
       document.body.style.overflow = '';
     }
   }, [menuOpen]);
+
+  const handleDockEnter = () => setIsDockHovered(true);
+  const handleDockLeave = () => setIsDockHovered(false);
 
   const go = (href: string) => {
     setMenuOpen(false);
@@ -113,55 +116,83 @@ export default function Navbar() {
         ))}
       </div>
 
-      {/* Dock — bottom center, desktop */}
-      <div ref={dockRef} className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 hidden md:flex items-center gap-px p-1.5 rounded-full"
-        style={{
-          background: 'var(--c-glass)',
-          border: '1px solid var(--c-t07)',
-          backdropFilter: 'blur(28px)',
-          boxShadow: '0 24px 64px rgba(0,0,0,0.6), 0 1px 0 var(--c-t04) inset',
-        }}>
+      {/* Invisible edge trigger — reveals dock when mouse approaches left edge */}
+      <div
+        className="fixed top-0 left-0 w-4 h-full z-40 hidden md:block"
+        onMouseEnter={handleDockEnter}
+      />
 
+      {/* Hint — subtle dots showing a menu lives on the left edge (fades out when revealed) */}
+      <div className="fixed left-2 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col gap-2 pointer-events-none transition-opacity duration-300"
+        style={{ opacity: isDockHovered ? 0 : 0.5 }}>
         {navKeys.map(link => {
-          const label    = t(link.key);
-          const isActive  = activeSection === link.href.replace('#', '');
-          const isHovered = hoveredLink === link.href;
-          const expanded  = isActive || isHovered;
-
+          const isActive = activeSection === link.href.replace('#', '');
           return (
-            <button key={link.href}
-              onClick={() => go(link.href)}
-              onMouseEnter={() => setHoveredLink(link.href)}
-              onMouseLeave={() => setHoveredLink(null)}
-              className="relative flex items-center gap-1.5 px-3 py-2 rounded-full transition-all duration-250"
+            <span key={link.href} className="rounded-full transition-all duration-300"
               style={{
-                background: isActive ? 'var(--c-t08)' : isHovered ? 'var(--c-t04)' : 'transparent',
-              }}>
-
-              {/* Number */}
-              <span className="text-[10px] font-bold tabular-nums leading-none transition-colors duration-200"
-                style={{ color: isActive ? 'var(--c-t50)' : 'var(--c-t20)' }}>
-                {link.num}
-              </span>
-
-              {/* Label — collapses when not active/hovered */}
-              <span className="text-[11px] font-medium whitespace-nowrap overflow-hidden transition-all duration-250 leading-none"
-                style={{
-                  maxWidth: expanded ? '72px' : '0px',
-                  opacity: expanded ? 1 : 0,
-                  color: isActive ? 'var(--c-text)' : 'var(--c-t50)',
-                }}>
-                {label}
-              </span>
-
-              {/* Active dot */}
-              {isActive && (
-                <span className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full"
-                  style={{ background: 'var(--c-t40)' }} />
-              )}
-            </button>
+                width: isActive ? '6px' : '4px',
+                height: isActive ? '6px' : '4px',
+                background: isActive ? 'var(--c-inv)' : 'var(--c-t30)',
+              }} />
           );
         })}
+      </div>
+
+      {/* Dock — left side, vertically centered, slides in on edge hover */}
+      <div ref={dockRef}
+        onMouseEnter={handleDockEnter}
+        onMouseLeave={handleDockLeave}
+        className="fixed left-0 top-1/2 z-50 hidden md:block"
+        style={{
+          transform: `translateY(-50%) translateX(${isDockHovered ? '14px' : '-110%'})`,
+          transition: 'transform 0.55s cubic-bezier(0.16, 1, 0.3, 1)',
+        }}
+      >
+        {/* Glass background */}
+        <div className="absolute inset-[-5px] rounded-2xl"
+          style={{
+            background: 'var(--c-glass)',
+            border: '1px solid var(--c-t07)',
+            backdropFilter: 'blur(28px)',
+            boxShadow: '8px 0 32px rgba(0,0,0,0.4), inset 1px 0 0 rgba(255,255,255,0.03)',
+          }}
+        />
+
+        {/* Items */}
+        <div className="relative flex flex-col items-stretch py-2 px-1.5 gap-0.5">
+          {navKeys.map(link => {
+            const label    = t(link.key);
+            const isActive = activeSection === link.href.replace('#', '');
+
+            return (
+              <button key={link.href}
+                onClick={() => go(link.href)}
+                className="group relative flex items-center gap-2.5 pl-3 pr-5 py-2 rounded-xl w-full transition-all duration-200 hover:translate-x-0.5"
+                style={{ background: isActive ? 'var(--c-t08)' : 'transparent' }}>
+
+                {/* Active bar indicator */}
+                <span className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] rounded-r-full transition-all duration-300"
+                  style={{ height: isActive ? '16px' : '0px', background: 'var(--c-inv)' }} />
+
+                {/* Hover highlight */}
+                <span className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"
+                  style={{ background: 'var(--c-t05)' }} />
+
+                {/* Number */}
+                <span className="relative text-[10px] font-bold tabular-nums leading-none select-none transition-colors duration-200"
+                  style={{ color: isActive ? 'var(--c-text)' : 'var(--c-t25)', minWidth: '14px' }}>
+                  {link.num}
+                </span>
+
+                {/* Label */}
+                <span className="relative text-[11px] font-semibold whitespace-nowrap leading-none select-none transition-colors duration-200"
+                  style={{ color: isActive ? 'var(--c-text)' : 'var(--c-t45)' }}>
+                  {label}
+                </span>
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {/* Mobile — hamburger top right */}

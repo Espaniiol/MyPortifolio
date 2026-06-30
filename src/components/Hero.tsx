@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useApp } from '../contexts/AppContext';
+import { personalInfo } from '../data/portfolio';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,7 +15,8 @@ const ORBS = [
 ];
 
 export default function Hero() {
-  const { t } = useApp();
+  const { t, lang } = useApp();
+  const info = personalInfo[lang];
   const sectionRef = useRef<HTMLElement>(null);
   const orbRefs    = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -137,7 +139,7 @@ export default function Hero() {
 
         {/* Title */}
         <div className="mb-10">
-          {['Analista', 'Programador'].map((word, i) => (
+          {info.heroTitle.map((word: string, i: number) => (
             <div key={i} style={{ lineHeight: 0.9 }}>
               <div className="hero-line inline-block text-[clamp(2.8rem,9vw,7rem)] font-black tracking-tighter"
                 style={{ color: i === 0 ? 'var(--c-text)' : 'var(--c-inv)' }}>
@@ -150,19 +152,18 @@ export default function Hero() {
         {/* Subtitle */}
         <div className="hero-sub mb-8 flex flex-col items-center gap-3">
           <span className="text-xs tracking-[0.4em] uppercase" style={{ color: 'var(--c-t25)' }}>
-            Delphi &nbsp;·&nbsp; Oracle &nbsp;·&nbsp; ERP Systems
+            {info.heroSubtitle.replace(/ · /g, '  ·  ')}
           </span>
           <span className="inline-flex items-center gap-2 text-xs tracking-[0.3em] uppercase font-medium" style={{ color: 'var(--c-t40)' }}>
             <span style={{ color: 'var(--c-t15)' }}>—</span>
-            Full Stack Developer
+            {info.heroRole || personalInfo.pt.heroRole || 'Full Stack Developer'}
             <span style={{ color: 'var(--c-t15)' }}>—</span>
           </span>
         </div>
 
         {/* Desc */}
         <p className="hero-desc text-sm leading-relaxed max-w-lg mx-auto mb-10" style={{ color: 'var(--c-t35)' }}>
-          Desenvolvedor especializado em sistemas ERP corporativos e aplicações legadas,
-          com expertise em Oracle, PL/SQL e integrações de APIs.
+          {info.heroDesc || personalInfo.pt.heroDesc}
         </p>
 
         {/* CTAs */}
