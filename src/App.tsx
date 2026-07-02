@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import LoadingScreen from './components/LoadingScreen';
-import CustomCursor from './components/CustomCursor';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -34,7 +33,6 @@ export default function App() {
   return (
     <>
       {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
-      {!loading && <CustomCursor />}
 
       <div style={{ opacity: loading ? 0 : 1, transition: 'opacity 0.3s' }}>
         <Navbar />

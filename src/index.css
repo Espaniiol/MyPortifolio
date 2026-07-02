@@ -93,9 +93,25 @@ canvas, video { transition: none !important; }
     color: var(--c-text);
     font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
     overflow-x: hidden;
-    cursor: none;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Clickable elements show the pointer/hand cursor.
+     Links already default to pointer; buttons need this explicitly. */
+  button:not(:disabled),
+  [role="button"],
+  label[for],
+  select,
+  summary,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"] {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
   }
 
   ::selection {
