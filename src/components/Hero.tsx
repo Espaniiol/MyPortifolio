@@ -6,54 +6,10 @@ import { personalInfo } from '../data/portfolio';
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* Orb definitions — each floats with CSS animation + mouse parallax */
-const ORBS = [
-  { size: 560, top: '-10%', left: '-8%',  gradient: 'radial-gradient(circle at 40% 40%, rgba(100,130,255,0.55), rgba(80,60,200,0.15) 60%, transparent 80%)', duration: '22s', delay: '0s',   parallax: 0.025 },
-  { size: 480, top:  '50%', left:  '65%', gradient: 'radial-gradient(circle at 55% 45%, rgba(160,80,255,0.50), rgba(120,40,200,0.12) 60%, transparent 80%)', duration: '28s', delay: '-8s',  parallax: -0.02 },
-  { size: 420, top:  '60%', left:  '-5%', gradient: 'radial-gradient(circle at 50% 50%, rgba(60,180,255,0.40), rgba(40,120,220,0.10) 60%, transparent 80%)', duration: '20s', delay: '-14s', parallax: 0.018 },
-  { size: 320, top:  '10%', left:  '70%', gradient: 'radial-gradient(circle at 45% 55%, rgba(200,100,255,0.35), rgba(150,60,200,0.08) 60%, transparent 80%)', duration: '26s', delay: '-5s',  parallax: -0.03 },
-];
-
 export default function Hero() {
-  const { t, lang } = useApp();
+  const { t, lang, theme } = useApp();
   const info = personalInfo[lang];
   const sectionRef = useRef<HTMLElement>(null);
-  const orbRefs    = useRef<(HTMLDivElement | null)[]>([]);
-
-  /* Mouse parallax on orbs */
-  useEffect(() => {
-    let cx = window.innerWidth  / 2;
-    let cy = window.innerHeight / 2;
-    let tx = [0, 0, 0, 0], ty = [0, 0, 0, 0];
-    let rx = [0, 0, 0, 0], ry = [0, 0, 0, 0];
-    let rafId: number;
-
-    const onMove = (e: MouseEvent) => {
-      const dx = (e.clientX - cx);
-      const dy = (e.clientY - cy);
-      ORBS.forEach((o, i) => { tx[i] = dx * o.parallax; ty[i] = dy * o.parallax; });
-    };
-    const onResize = () => { cx = window.innerWidth / 2; cy = window.innerHeight / 2; };
-
-    const tick = () => {
-      rafId = requestAnimationFrame(tick);
-      ORBS.forEach((_, i) => {
-        rx[i] += (tx[i] - rx[i]) * 0.06;
-        ry[i] += (ty[i] - ry[i]) * 0.06;
-        const el = orbRefs.current[i];
-        if (el) el.style.transform = `translate(${rx[i]}px, ${ry[i]}px)`;
-      });
-    };
-
-    window.addEventListener('mousemove', onMove, { passive: true });
-    window.addEventListener('resize',    onResize, { passive: true });
-    rafId = requestAnimationFrame(tick);
-    return () => {
-      cancelAnimationFrame(rafId);
-      window.removeEventListener('mousemove', onMove);
-      window.removeEventListener('resize',    onResize);
-    };
-  }, []);
 
   /* GSAP entrance */
   useEffect(() => {
@@ -75,50 +31,15 @@ export default function Hero() {
 
   return (
     <section ref={sectionRef} id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      style={{ background: 'var(--c-bg)' }}>
+      className="relative min-h-screen flex items-center justify-center overflow-hidden">
 
-      {/* ── Floating orbs ── */}
-      {ORBS.map((orb, i) => (
-        <div
-          key={i}
-          ref={el => { orbRefs.current[i] = el; }}
-          className="absolute pointer-events-none will-change-transform"
-          style={{
-            width:      orb.size,
-            height:     orb.size,
-            top:        orb.top,
-            left:       orb.left,
-            borderRadius: '50%',
-            background: orb.gradient,
-            filter:     'blur(72px)',
-            animation:  `orbFloat ${orb.duration} ease-in-out ${orb.delay} infinite`,
-            zIndex:     1,
-          }}
-        />
-      ))}
-
-      {/* Noise overlay — suaviza os orbs */}
-      <div className="absolute inset-0 pointer-events-none" style={{
-        backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\' opacity=\'0.04\'/%3E%3C/svg%3E")',
-        backgroundSize: '180px',
-        zIndex: 2,
-        opacity: 0.35,
-      }} />
-
-      {/* Vinheta radial */}
-      <div className="absolute inset-0 pointer-events-none" style={{
-        background: 'radial-gradient(ellipse 80% 65% at 50% 50%, transparent 25%, var(--c-bg) 100%)',
-        zIndex: 3,
-      }} />
-
-      {/* Grid pontilhado */}
-      <div className="absolute inset-0 pointer-events-none" style={{
-        backgroundImage: `radial-gradient(circle, var(--c-t08) 1px, transparent 1px)`,
-        backgroundSize: '40px 40px',
-        zIndex: 2,
-        opacity: 0.5,
-      }} />
+      {/* Soft scrim behind the text for readability over the space background (dark only) */}
+      {theme === 'dark' && (
+        <div className="absolute inset-0 pointer-events-none" style={{
+          background: 'radial-gradient(ellipse 58% 48% at 50% 50%, rgba(0,0,0,0.38), transparent 72%)',
+          zIndex: 1,
+        }} />
+      )}
 
       {/* Content */}
       <div className="hero-content relative z-10 text-center px-6 max-w-5xl mx-auto">

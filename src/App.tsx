@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import LoadingScreen from './components/LoadingScreen';
+import SpaceBackground from './components/SpaceBackground';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -34,7 +35,9 @@ export default function App() {
     <>
       {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
 
-      <div style={{ opacity: loading ? 0 : 1, transition: 'opacity 0.3s' }}>
+      <SpaceBackground />
+
+      <div style={{ position: 'relative', zIndex: 1, opacity: loading ? 0 : 1, transition: 'opacity 0.3s' }}>
         <Navbar />
         <main>
           <Hero />

@@ -209,12 +209,20 @@ canvas, video { transition: none !important; }
 .animate-float { animation: float 9s ease-in-out infinite; }
 .animate-pulse-soft { animation: pulse-soft 2s ease-in-out infinite; }
 
-@keyframes orbFloat {
-  0%   { translate: 0px 0px; }
-  16%  { translate: 60px -40px; }
-  33%  { translate: 30px  60px; }
-  50%  { translate: -50px 30px; }
-  66%  { translate: 20px -60px; }
-  83%  { translate: -40px 20px; }
-  100% { translate: 0px 0px; }
+/* ── Space background ─────────────────────────
+   In dark theme, sections become translucent so the fixed
+   starfield/nebula shows through. The Hero stays transparent
+   for a vivid space view at the top. */
+[data-theme="dark"] main section:not(#hero),
+[data-theme="dark"] footer {
+  background-color: rgba(6, 6, 12, 0.82) !important;
+}
+
+@keyframes nebulaDrift1 {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(4%, 6%); }
+}
+@keyframes nebulaDrift2 {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(-5%, -4%); }
 }
