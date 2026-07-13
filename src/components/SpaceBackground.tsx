@@ -54,7 +54,7 @@ export default function SpaceBackground() {
 
     let raf = 0;
     let last = 0;
-    let running = true;
+    let running = document.visibilityState === 'visible';
     const FRAME = 1000 / 30;
 
     const draw = (now: number) => {
@@ -113,7 +113,22 @@ export default function SpaceBackground() {
     raf = requestAnimationFrame(draw);
 
     const onResize = () => init();
-    const onVis = () => { running = document.visibilityState === 'visible'; };
+    const onVis = () => {
+      const visible = document.visibilityState === 'visible';
+      running = visible;
+      if (!visible) {
+        // Pausing without clearing leaves the last frame painted — an in-flight
+        // shooting star would freeze as a static diagonal streak across the header
+        // (common in mobile in-app browsers that report the page as hidden). Drop
+        // the shot and wipe the canvas so nothing gets stuck on screen.
+        shot = null;
+        ctx.clearRect(0, 0, w, h);
+      } else {
+        // Resume cleanly: skip the accumulated gap and reschedule the next shot.
+        last = 0;
+        nextShot = performance.now() + rand(3000, 7000);
+      }
+    };
     window.addEventListener('resize', onResize, { passive: true });
     document.addEventListener('visibilitychange', onVis);
 
