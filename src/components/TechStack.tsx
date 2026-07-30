@@ -39,7 +39,7 @@ export default function TechStack() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="stack-header mb-16">
           <div className="badge mb-4">{t('stack.badge')}</div>
-          <h2 className="text-4xl sm:text-5xl font-black tracking-tight" style={{ color: 'var(--c-text)' }}>{t('stack.title')}</h2>
+          <h2 className="text-4xl sm:text-5xl font-semibold tracking-tight" style={{ color: 'var(--c-text)' }}>{t('stack.title')}</h2>
         </div>
 
         <div className="tech-grid grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 mb-16">
@@ -55,11 +55,11 @@ export default function TechStack() {
                 <div className="flex items-center gap-3">
                   <span className="text-lg">{tech.icon}</span>
                   <div>
-                    <div className="text-sm font-semibold" style={{ color: 'var(--c-text)' }}>{tech.name}</div>
+                    <div className="text-sm font-medium" style={{ color: 'var(--c-text)' }}>{tech.name}</div>
                     <div className="text-[11px] uppercase tracking-wider" style={{ color: 'var(--c-t25)' }}>{tech.category}</div>
                   </div>
                 </div>
-                <span className="text-sm font-bold tabular-nums" style={{ color: 'var(--c-t40)' }}>{tech.level}%</span>
+                <span className="text-sm font-medium tabular-nums" style={{ color: 'var(--c-t40)' }}>{tech.level}%</span>
               </div>
               <div className="h-px rounded-full overflow-hidden" style={{ background: 'var(--c-t06)' }}>
                 <div ref={el => { barRefs.current[i] = el; }} className="h-full rounded-full" style={{ background: hovered===tech.name ? 'var(--c-inv)' : 'var(--c-t50)', width: '0%', transition: 'background 0.2s' }} />

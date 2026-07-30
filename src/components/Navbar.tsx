@@ -73,7 +73,7 @@ export default function Navbar() {
       {/* Logo — top left floating */}
       <button ref={logoRef} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         className="fixed top-7 left-7 z-50 flex items-center gap-2.5 group">
-        <div className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-black transition-all duration-300 group-hover:bg-white group-hover:text-black"
+        <div className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-semibold transition-all duration-300 group-hover:bg-white group-hover:text-black"
           style={{ border: '1px solid var(--c-t12)', background: 'var(--c-t05)', color: 'var(--c-text)' }}>
           G
         </div>
@@ -105,7 +105,7 @@ export default function Navbar() {
           <button
             key={l}
             onClick={() => setLang(l)}
-            className="text-[10px] font-bold uppercase px-2 py-1 rounded-lg transition-all"
+            className="text-[10px] font-medium uppercase px-2 py-1 rounded-lg transition-all"
             style={{
               color: lang === l ? 'var(--c-text)' : 'var(--c-t30)',
               background: lang === l ? 'var(--c-t08)' : 'transparent',
@@ -179,13 +179,13 @@ export default function Navbar() {
                   style={{ background: 'var(--c-t05)' }} />
 
                 {/* Number */}
-                <span className="relative text-[10px] font-bold tabular-nums leading-none select-none transition-colors duration-200"
+                <span className="relative text-[10px] font-medium tabular-nums leading-none select-none transition-colors duration-200"
                   style={{ color: isActive ? 'var(--c-text)' : 'var(--c-t25)', minWidth: '14px' }}>
                   {link.num}
                 </span>
 
                 {/* Label */}
-                <span className="relative text-[11px] font-semibold whitespace-nowrap leading-none select-none transition-colors duration-200"
+                <span className="relative text-[11px] font-medium whitespace-nowrap leading-none select-none transition-colors duration-200"
                   style={{ color: isActive ? 'var(--c-text)' : 'var(--c-t45)' }}>
                   {label}
                 </span>
@@ -220,7 +220,7 @@ export default function Navbar() {
 
           {/* Top bar inside overlay */}
           <div className="absolute top-7 left-7 flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-black"
+            <div className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-semibold"
               style={{ border: '1px solid var(--c-t12)', background: 'var(--c-t05)', color: 'var(--c-text)' }}>G</div>
           </div>
 
@@ -231,10 +231,10 @@ export default function Navbar() {
               return (
                 <button key={link.href} onClick={() => go(link.href)}
                   className="mobile-nav-item flex items-baseline gap-5 py-4 w-full group transition-all duration-200">
-                  <span className="text-xs font-bold tabular-nums" style={{ color: 'var(--c-t20)' }}>
+                  <span className="text-xs font-medium tabular-nums" style={{ color: 'var(--c-t20)' }}>
                     {link.num}
                   </span>
-                  <span className="text-4xl font-black tracking-tight transition-colors duration-200"
+                  <span className="text-4xl font-medium tracking-tight transition-colors duration-200"
                     style={{ color: isActive ? 'var(--c-text)' : 'var(--c-t40)' }}>
                     {label}
                   </span>
@@ -262,7 +262,7 @@ export default function Navbar() {
                 <button
                   key={l}
                   onClick={() => setLang(l)}
-                  className="text-[10px] font-bold uppercase px-2 py-1 rounded-lg transition-all"
+                  className="text-[10px] font-medium uppercase px-2 py-1 rounded-lg transition-all"
                   style={{
                     color: lang === l ? 'var(--c-text)' : 'var(--c-t30)',
                     background: lang === l ? 'var(--c-t06)' : 'transparent',

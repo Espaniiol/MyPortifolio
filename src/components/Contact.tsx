@@ -89,7 +89,7 @@ export default function Contact() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="contact-header mb-16">
           <div className="badge mb-4">{t('contact.badge')}</div>
-          <h2 className="text-4xl sm:text-5xl font-black tracking-tight" style={{ color: 'var(--c-text)' }}>{t('contact.title')}</h2>
+          <h2 className="text-4xl sm:text-5xl font-semibold tracking-tight" style={{ color: 'var(--c-text)' }}>{t('contact.title')}</h2>
           <p className="mt-3 text-sm" style={{ color: 'var(--c-t30)' }}>{t('contact.subtitle')}</p>
         </div>
 
@@ -99,7 +99,7 @@ export default function Contact() {
             {sent ? (
               <div className="flex flex-col items-center justify-center py-16 text-center">
                 <div className="text-4xl mb-3">✓</div>
-                <div className="text-base font-semibold mb-1" style={{ color: 'var(--c-text)' }}>{t('contact.sentTitle')}</div>
+                <div className="text-base font-medium mb-1" style={{ color: 'var(--c-text)' }}>{t('contact.sentTitle')}</div>
                 <div className="text-sm" style={{ color: 'var(--c-t30)' }}>{t('contact.sentSubtitle')}</div>
               </div>
             ) : (
@@ -127,7 +127,7 @@ export default function Contact() {
                   <p className="text-xs text-red-400 text-center">{error}</p>
                 )}
                 <button type="submit" disabled={sending}
-                  className="w-full py-3 rounded-xl text-sm font-semibold transition-all duration-200 hover:bg-white hover:text-black disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full py-3 rounded-xl text-sm font-medium transition-all duration-200 hover:bg-white hover:text-black disabled:opacity-50 disabled:cursor-not-allowed"
                   style={{ border: '1px solid var(--c-t20)', color: 'var(--c-text)', background: 'var(--c-t04)' }}>
                   {sending ? 'Enviando...' : t('contact.sendBtn')}
                 </button>
@@ -138,8 +138,8 @@ export default function Contact() {
           {/* Info */}
           <div className="flex flex-col gap-5">
             <div className="contact-block p-7 rounded-2xl" style={{ background: 'var(--c-bg2)', border: '1px solid var(--c-t08)', boxShadow: '0 2px 12px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.03)' }}>
-              <h3 className="text-base font-bold mb-2" style={{ color: 'var(--c-text)' }}>{t('contact.workTogether')}</h3>
-              <p className="text-sm leading-relaxed" style={{ color: 'var(--c-t40)' }}>
+              <h3 className="text-base font-medium mb-2" style={{ color: 'var(--c-text)' }}>{t('contact.workTogether')}</h3>
+              <p className="text-sm leading-relaxed" style={{ color: 'var(--c-t45)' }}>
                 {t('contact.workDesc')} Especialista em sistemas ERP, Delphi, Oracle e desenvolvimento moderno.
               </p>
               <div className="mt-5 flex items-center gap-3">
@@ -159,7 +159,7 @@ export default function Contact() {
                       {s.icon}
                     </div>
                     <div>
-                      <div className="text-sm font-semibold" style={{ color: 'var(--c-text)' }}>{s.label}</div>
+                      <div className="text-sm font-medium" style={{ color: 'var(--c-text)' }}>{s.label}</div>
                       <div className="text-xs" style={{ color: 'var(--c-t30)' }}>{s.desc}</div>
                     </div>
                     <div className="ml-auto" style={{ color: 'var(--c-t20)' }}>→</div>

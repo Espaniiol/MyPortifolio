@@ -109,7 +109,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
               {/* Scan line */}
               <div className="ls-scan-line absolute top-[-100%] left-0 w-full h-1 bg-white/20 blur-[2px]"></div>
               
-              <span className="text-5xl font-black relative z-10" style={{ color: 'var(--c-text)' }}>G</span>
+              <span className="text-5xl font-semibold relative z-10" style={{ color: 'var(--c-text)' }}>G</span>
               
               {/* Corner Accents */}
               <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-white/30 rounded-tl-lg m-2"></div>
@@ -119,7 +119,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
             </div>
             
             <div className="flex flex-col items-center gap-2">
-              <div className="ls-logo-text text-[10px] tracking-[0.4em] uppercase font-bold text-center" style={{ color: 'var(--c-text)' }}>
+              <div className="ls-logo-text text-[10px] tracking-[0.4em] uppercase font-medium text-center" style={{ color: 'var(--c-text)' }}>
                 Guilherme E. Schlickmann
               </div>
               <div className="ls-logo-text text-[9px] tracking-[0.2em] uppercase text-center" style={{ color: 'var(--c-t40)' }}>
@@ -135,7 +135,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
                 Initializing...
               </span>
               <div className="ls-logo-text flex items-baseline">
-                <span className="text-2xl font-black tabular-nums tracking-tighter" style={{ color: 'var(--c-text)' }}>{count}</span>
+                <span className="text-2xl font-medium tabular-nums tracking-tighter" style={{ color: 'var(--c-text)' }}>{count}</span>
                 <span className="text-xs font-medium ml-[2px]" style={{ color: 'var(--c-t40)' }}>%</span>
               </div>
             </div>

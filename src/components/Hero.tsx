@@ -62,7 +62,7 @@ export default function Hero() {
         <div className="mb-10">
           {info.heroTitle.map((word: string, i: number) => (
             <div key={i} style={{ lineHeight: 0.9 }}>
-              <div className="hero-line inline-block text-[clamp(2.8rem,9vw,7rem)] font-black tracking-tighter"
+              <div className="hero-line inline-block text-[clamp(2.8rem,9vw,7rem)] font-semibold tracking-tight"
                 style={{ color: i === 0 ? 'var(--c-text)' : 'var(--c-inv)' }}>
                 {word}
               </div>
@@ -83,7 +83,7 @@ export default function Hero() {
         </div>
 
         {/* Desc */}
-        <p className="hero-desc text-sm leading-relaxed max-w-lg mx-auto mb-10" style={{ color: 'var(--c-t35)' }}>
+        <p className="hero-desc text-sm leading-relaxed max-w-lg mx-auto mb-10" style={{ color: 'var(--c-t40)' }}>
           {info.heroDesc || personalInfo.pt.heroDesc}
         </p>
 
@@ -91,7 +91,7 @@ export default function Hero() {
         <div className="hero-cta flex flex-col sm:flex-row items-center justify-center gap-3 mb-16">
           <button
             onClick={() => document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-7 py-3 rounded-xl text-sm font-semibold transition-all duration-300 hover:bg-white hover:text-black"
+            className="px-7 py-3 rounded-xl text-sm font-medium transition-all duration-300 hover:bg-white hover:text-black"
             style={{ background: 'var(--c-t08)', border: '1px solid var(--c-t15)', color: 'var(--c-inv)' }}>
             {t('hero.viewProjects')}
           </button>
@@ -114,7 +114,7 @@ export default function Hero() {
         <div className="hero-stats flex items-center justify-center gap-12">
           {[{ n: '5+', l: t('hero.yearsExp') }, { n: '10+', l: t('hero.technologies') }].map(s => (
             <div key={s.l} className="text-center">
-              <div className="text-lg font-black" style={{ color: 'var(--c-text)' }}>{s.n}</div>
+              <div className="text-lg font-medium" style={{ color: 'var(--c-text)' }}>{s.n}</div>
               <div className="text-[10px] uppercase tracking-widest mt-0.5" style={{ color: 'var(--c-t25)' }}>{s.l}</div>
             </div>
           ))}

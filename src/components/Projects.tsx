@@ -128,8 +128,8 @@ function Modal({ p, onClose }: { p: Project; onClose: () => void }) {
         </span>
 
         <div className="p-7">
-          <h3 className="text-xl font-bold mb-3" style={{ color: 'var(--c-text)' }}>{p.title}</h3>
-          <p className="text-sm leading-relaxed mb-5" style={{ color: 'var(--c-t45)' }}>{p.longDescription}</p>
+          <h3 className="text-xl font-medium mb-3" style={{ color: 'var(--c-text)' }}>{p.title}</h3>
+          <p className="text-sm leading-relaxed mb-5" style={{ color: 'var(--c-t50)' }}>{p.longDescription}</p>
           <div className="flex flex-wrap gap-2 mb-6">{p.techs.map(tech => <span key={tech} className="tag">{tech}</span>)}</div>
           <div className="flex gap-3">
             <a href={p.github} target="_blank" rel="noreferrer"
@@ -170,7 +170,7 @@ export default function Projects() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="proj-header mb-16">
           <div className="badge mb-4">{t('projects.badge')}</div>
-          <h2 className="text-4xl sm:text-5xl font-black tracking-tight" style={{ color: 'var(--c-text)' }}>{t('projects.title')}</h2>
+          <h2 className="text-4xl sm:text-5xl font-semibold tracking-tight" style={{ color: 'var(--c-text)' }}>{t('projects.title')}</h2>
         </div>
 
         <div className="proj-grid grid md:grid-cols-2 gap-5 mb-5">
@@ -219,8 +219,8 @@ export default function Projects() {
               )}
 
               <div className="p-5">
-                <h3 className="text-base font-bold mb-2" style={{ color: 'var(--c-text)' }}>{p.title}</h3>
-                <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--c-t40)' }}>{p.description}</p>
+                <h3 className="text-base font-medium mb-2" style={{ color: 'var(--c-text)' }}>{p.title}</h3>
+                <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--c-t45)' }}>{p.description}</p>
                 <div className="flex flex-wrap gap-1.5">{p.techs.map(tech => <span key={tech} className="tag">{tech}</span>)}</div>
               </div>
             </div>
@@ -245,8 +245,8 @@ export default function Projects() {
                     </a>
                   </div>
                 </div>
-                <h3 className="text-sm font-bold mb-2" style={{ color: 'var(--c-text)' }}>{p.title}</h3>
-                <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--c-t35)' }}>{p.description}</p>
+                <h3 className="text-sm font-medium mb-2" style={{ color: 'var(--c-text)' }}>{p.title}</h3>
+                <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--c-t40)' }}>{p.description}</p>
                 <div className="flex flex-wrap gap-1.5">{p.techs.map(tech => <span key={tech} className="tag">{tech}</span>)}</div>
               </div>
             ))}

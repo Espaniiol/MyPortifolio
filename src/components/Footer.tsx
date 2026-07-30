@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="py-10" style={{ background: 'var(--c-bg)', borderTop: '1px solid var(--c-t05)' }}>
       <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-6 h-6 rounded-lg flex items-center justify-center text-[11px] font-black" style={{ border: '1px solid var(--c-t10)', background: 'var(--c-t05)', color: 'var(--c-text)' }}>G</div>
+          <div className="w-6 h-6 rounded-lg flex items-center justify-center text-[11px] font-semibold" style={{ border: '1px solid var(--c-t10)', background: 'var(--c-t05)', color: 'var(--c-text)' }}>G</div>
           <span className="text-xs" style={{ color: 'var(--c-t30)' }}>Guilherme E. Schlickmann</span>
         </div>
         <span className="text-xs" style={{ color: 'var(--c-t20)' }}>

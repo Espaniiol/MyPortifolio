@@ -48,7 +48,7 @@ export default function Journey() {
 
         <div className="journey-header mb-14">
           <div className="badge mb-4">{t('journey.badge')}</div>
-          <h2 className="text-4xl sm:text-5xl font-black tracking-tight" style={{ color: 'var(--c-text)' }}>{t('journey.title')}</h2>
+          <h2 className="text-4xl sm:text-5xl font-semibold tracking-tight" style={{ color: 'var(--c-text)' }}>{t('journey.title')}</h2>
           <p className="mt-3 text-sm" style={{ color: 'var(--c-t30)' }}>{t('journey.subtitle')}</p>
         </div>
 
@@ -143,22 +143,22 @@ function Card({ e, i, cls }: { e: typeof journeyEvents['pt'][0]; i: number; cls:
           {e.icon}
         </div>
         <div>
-          <div className="text-xl font-black tabular-nums leading-none"
+          <div className="text-xl font-medium tabular-nums leading-none"
             style={{ color: e.year === 'Futuro' ? 'var(--c-t35)' : 'var(--c-text)' }}>
             {e.year}
           </div>
-          <div className="text-xs font-semibold mt-0.5" style={{ color: 'var(--c-t50)' }}>
+          <div className="text-xs font-medium mt-0.5" style={{ color: 'var(--c-t50)' }}>
             {e.title}
           </div>
         </div>
       </div>
 
-      <p className="text-xs leading-relaxed" style={{ color: 'var(--c-t35)' }}>
+      <p className="text-xs leading-relaxed" style={{ color: 'var(--c-t40)' }}>
         {e.description}
       </p>
 
       {/* Watermark */}
-      <div className="absolute bottom-3 right-4 text-4xl font-black tabular-nums pointer-events-none select-none"
+      <div className="absolute bottom-3 right-4 text-4xl font-medium tabular-nums pointer-events-none select-none"
         style={{ color: 'var(--c-inv)', opacity: 0.04 }}>
         {String(i + 1).padStart(2, '0')}
       </div>

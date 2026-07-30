@@ -46,7 +46,7 @@ export default function About() {
         {/* Header */}
         <div className="about-header mb-16">
           <div className="badge mb-4">{t('about.badge')}</div>
-          <h2 className="text-4xl sm:text-5xl font-black tracking-tight" style={{ color: 'var(--c-text)' }}>
+          <h2 className="text-4xl sm:text-5xl font-semibold tracking-tight" style={{ color: 'var(--c-text)' }}>
             {t('about.title')}
           </h2>
         </div>
@@ -55,9 +55,9 @@ export default function About() {
         <div className="about-body grid lg:grid-cols-[1fr_340px] gap-16 items-start">
           {/* Text col */}
           <div className="space-y-5">
-            <p className="about-text text-base leading-relaxed" style={{ color: 'var(--c-t50)' }} dangerouslySetInnerHTML={{ __html: info.aboutP1 }} />
-            <p className="about-text text-base leading-relaxed" style={{ color: 'var(--c-t50)' }} dangerouslySetInnerHTML={{ __html: info.aboutP2 }} />
-            <p className="about-text text-base leading-relaxed" style={{ color: 'var(--c-t50)' }} dangerouslySetInnerHTML={{ __html: info.aboutP3 }} />
+            <p className="about-text text-base leading-relaxed" style={{ color: 'var(--c-t60)' }} dangerouslySetInnerHTML={{ __html: info.aboutP1 }} />
+            <p className="about-text text-base leading-relaxed" style={{ color: 'var(--c-t60)' }} dangerouslySetInnerHTML={{ __html: info.aboutP2 }} />
+            <p className="about-text text-base leading-relaxed" style={{ color: 'var(--c-t60)' }} dangerouslySetInnerHTML={{ __html: info.aboutP3 }} />
 
             {/* Tags */}
             <div className="about-text flex flex-wrap gap-2 pt-2">
@@ -70,7 +70,7 @@ export default function About() {
             <div className="stats-row grid grid-cols-4 gap-6 pt-8 border-t" style={{ borderColor: 'var(--c-t06)' }}>
               {stats[lang].map((s, i) => (
                 <div key={s.label} className="stat-item">
-                  <div className="text-2xl font-black tabular-nums" style={{ color: 'var(--c-text)' }}>
+                  <div className="text-2xl font-medium tabular-nums" style={{ color: 'var(--c-text)' }}>
                     <span ref={el => { counterRefs.current[i] = el; }}>{s.value}</span>{s.suffix}
                   </div>
                   <div className="text-[11px] uppercase tracking-wider mt-1" style={{ color: 'var(--c-t30)' }}>{s.label}</div>
@@ -94,7 +94,7 @@ export default function About() {
                     const parent = el.parentElement!;
                     parent.style.background = 'var(--c-bg3)';
                     parent.innerHTML = `<div style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px">
-                      <div style="width:60px;height:60px;border-radius:16px;background:var(--c-t06);border:1px solid var(--c-t10);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;color:var(--c-inv)">G</div>
+                      <div style="width:60px;height:60px;border-radius:16px;background:var(--c-t06);border:1px solid var(--c-t10);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;color:var(--c-inv)">G</div>
                       <div style="font-size:12px;color:var(--c-t30)">Coloque me.jpg em /public</div>
                     </div>`;
                   }}
@@ -106,7 +106,7 @@ export default function About() {
                 <div className="text-[10px] uppercase tracking-wider mb-1" style={{ color: 'var(--c-t30)' }}>Status</div>
                 <div className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full animate-pulse-soft" style={{ background: 'var(--c-inv)' }} />
-                  <span className="text-sm font-semibold" style={{ color: 'var(--c-text)' }}>{t('about.available')}</span>
+                  <span className="text-sm font-medium" style={{ color: 'var(--c-text)' }}>{t('about.available')}</span>
                 </div>
               </div>
 

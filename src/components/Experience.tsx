@@ -31,7 +31,7 @@ export default function Experience() {
       <div className="max-w-4xl mx-auto px-6">
         <div className="exp-header mb-16">
           <div className="badge mb-4">{t('experience.badge')}</div>
-          <h2 className="text-4xl sm:text-5xl font-black tracking-tight" style={{ color: 'var(--c-text)' }}>{t('experience.title')}</h2>
+          <h2 className="text-4xl sm:text-5xl font-semibold tracking-tight" style={{ color: 'var(--c-text)' }}>{t('experience.title')}</h2>
         </div>
 
         <div className="tl-wrap relative">
@@ -57,7 +57,7 @@ export default function Experience() {
                     <div className="flex items-start justify-between mb-3">
                       <div>
                         <div className="text-[11px] uppercase tracking-widest mb-1" style={{ color: 'var(--c-t30)' }}>{exp.period}</div>
-                        <h3 className="text-base font-bold" style={{ color: 'var(--c-text)' }}>{exp.role}</h3>
+                        <h3 className="text-base font-medium" style={{ color: 'var(--c-text)' }}>{exp.role}</h3>
                         <div className="text-sm mt-0.5" style={{ color: 'var(--c-t40)' }}>{exp.company}</div>
                       </div>
                       <svg className="w-4 h-4 flex-shrink-0 mt-1 transition-transform duration-300" style={{ color: 'var(--c-t25)', transform: active===exp.id ? 'rotate(180deg)' : 'none' }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -66,7 +66,7 @@ export default function Experience() {
                     </div>
 
                     <div style={{ maxHeight: active===exp.id ? '240px' : '0', overflow: 'hidden', transition: 'max-height 0.45s cubic-bezier(0.4,0,0.2,1)' }}>
-                      <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--c-t40)' }}>{exp.description}</p>
+                      <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--c-t45)' }}>{exp.description}</p>
                     </div>
 
                     <div className="flex flex-wrap gap-2 mt-2">
