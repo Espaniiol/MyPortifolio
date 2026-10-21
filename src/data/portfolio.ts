@@ -282,6 +282,7 @@ export const journeyEvents = {
     { year: '2023', title: 'Imersão Técnica', description: 'Intensifiquei estudos em Delphi, Oracle, Python e JavaScript. Completei cursos na Alura e Udemy, construindo portfólio técnico e consolidando banco de dados.', icon: '💻', color: '#999999' },
     { year: '2024', title: 'Primeiro Emprego em TI', description: 'Analista Q/A JR na Ellon Tecnologia. Testes manuais, automação de APIs com Postman/Swagger e Code Review em Delphi. A virada de chave na carreira.', icon: '⚙️', color: '#bbbbbb' },
     { year: '2025', title: 'Analista Programador', description: 'Desenvolvedor na VIASOFT. Criando stored procedures Oracle, triggers e integrações para sistemas ERP corporativos. Home Office.', icon: '⚡', color: '#dddddd' },
+    { year: '2026-2027', title: 'Pós-Graduação em IA', description: 'Pós-graduação em Desenvolvimento de Agentes Inteligentes pela UTFPR, com início em agosto de 2026 e conclusão prevista para dezembro de 2027.', icon: '🤖', color: '#eeeeee' },
     { year: 'Futuro', title: 'Próximos Objetivos', description: 'Evoluir em full stack moderno, arquiteturas cloud, contribuir para open source e me tornar referência em integração de sistemas ERP com tecnologias modernas.', icon: '◎', color: '#ffffff' },
   ],
   en: [
@@ -290,6 +291,7 @@ export const journeyEvents = {
     { year: '2023', title: 'Technical Immersion', description: 'Intensified studies in Delphi, Oracle, Python, and JavaScript. Completed courses on Alura and Udemy, building a technical portfolio and consolidating database knowledge.', icon: '💻', color: '#999999' },
     { year: '2024', title: 'First IT Job', description: 'JR QA Analyst at Ellon Tecnologia. Manual testing, API automation with Postman/Swagger, and Code Review in Delphi. The turning point in my career.', icon: '⚙️', color: '#bbbbbb' },
     { year: '2025', title: 'Programmer Analyst', description: 'Developer at VIASOFT. Creating Oracle stored procedures, triggers, and integrations for corporate ERP systems. Home Office.', icon: '⚡', color: '#dddddd' },
+    { year: '2026-2027', title: 'Postgrad in AI', description: 'Postgraduate studies in Intelligent Agent Development at UTFPR, starting in August 2026 and expected to finish in December 2027.', icon: '🤖', color: '#eeeeee' },
     { year: 'Future', title: 'Next Goals', description: 'Evolve in modern full stack, cloud architectures, contribute to open source, and become a reference in integrating ERP systems with modern technologies.', icon: '◎', color: '#ffffff' },
   ],
   es: [
@@ -298,6 +300,7 @@ export const journeyEvents = {
     { year: '2023', title: 'Inmersión Técnica', description: 'Intensifiqué mis estudios en Delphi, Oracle, Python y JavaScript. Completé cursos en Alura y Udemy, construyendo un portafolio técnico y consolidando conocimientos en bases de datos.', icon: '💻', color: '#999999' },
     { year: '2024', title: 'Primer Empleo en TI', description: 'Analista QA JR en Ellon Tecnologia. Pruebas manuales, automatización de APIs con Postman/Swagger y revisión de código en Delphi. El punto de inflexión en mi carrera.', icon: '⚙️', color: '#bbbbbb' },
     { year: '2025', title: 'Analista Programador', description: 'Desarrollador en VIASOFT. Creando procedimientos almacenados en Oracle, triggers e integraciones para sistemas ERP corporativos. Home Office.', icon: '⚡', color: '#dddddd' },
+    { year: '2026-2027', title: 'Posgrado en IA', description: 'Posgrado en Desarrollo de Agentes Inteligentes por la UTFPR, con inicio en agosto de 2026 y finalización prevista para diciembre de 2027.', icon: '🤖', color: '#eeeeee' },
     { year: 'Futuro', title: 'Próximos Objetivos', description: 'Evolucionar en full stack moderno, arquitecturas cloud, contribuir al código abierto y convertirme en un referente en la integración de sistemas ERP con tecnologías modernas.', icon: '◎', color: '#ffffff' },
   ]
 };

@@ -38,8 +38,8 @@ export default function Journey() {
     return () => ctx.revert();
   }, []);
 
-  const cols = 'grid-cols-6';
-  const gap  = 'gap-3';
+  const cols = 'grid-cols-7';
+  const gap  = 'gap-2';
 
   return (
     <section ref={sectionRef} id="journey" className="py-32" style={{ background: 'var(--c-bg)' }}>
